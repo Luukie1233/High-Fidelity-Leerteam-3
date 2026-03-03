@@ -1,0 +1,128 @@
+import { ArrowLeft, CheckCircle2, Circle } from 'lucide-react';
+import { useNavigate } from 'react-router';
+import { PhoneFrame } from '../components/PhoneFrame';
+import { TabBar } from '../components/TabBar';
+import { useState } from 'react';
+
+export default function TaalKiezen() {
+  const navigate = useNavigate();
+  const [selectedLanguage, setSelectedLanguage] = useState('nl');
+
+  return (
+    <PhoneFrame>
+      {/* Header with gradient */}
+      <div 
+        className="relative px-6 py-4 flex items-center justify-between"
+        style={{
+          height: '80px',
+          background: 'linear-gradient(to bottom, #A8D4F0, #C8E4F8)',
+        }}
+      >
+        {/* Back Button */}
+        <button 
+          onClick={() => navigate('/instellingen')}
+          className="p-2 -ml-2"
+        >
+          <ArrowLeft size={24} style={{ color: '#1E2A3A' }} />
+        </button>
+
+        {/* Title */}
+        <h1 
+          className="text-xl font-bold"
+          style={{ color: '#1E2A3A' }}
+        >
+          Taal kiezen
+        </h1>
+        
+        {/* Empty space for alignment */}
+        <div style={{ width: '40px' }} />
+      </div>
+
+      {/* Content Area */}
+      <div className="flex-1 px-6 py-6 overflow-y-auto" style={{ height: 'calc(844px - 80px - 80px)' }}>
+        {/* Language Options */}
+        <div className="space-y-3">
+          {/* Dutch Option */}
+          <LanguageOption
+            flag="🇳🇱"
+            language="Nederlands"
+            isSelected={selectedLanguage === 'nl'}
+            onClick={() => setSelectedLanguage('nl')}
+          />
+
+          {/* English Option */}
+          <LanguageOption
+            flag="🇬🇧"
+            language="Engels"
+            isSelected={selectedLanguage === 'en'}
+            onClick={() => setSelectedLanguage('en')}
+          />
+        </div>
+      </div>
+
+      {/* Bottom Tab Bar */}
+      <TabBar activeTab="planner" />
+    </PhoneFrame>
+  );
+}
+
+// Language Option Component
+function LanguageOption({ 
+  flag, 
+  language,
+  isSelected,
+  onClick
+}: { 
+  flag: string; 
+  language: string;
+  isSelected: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button 
+      className="w-full p-4 flex items-center gap-3 text-left hover:shadow-md transition-shadow"
+      style={{
+        backgroundColor: '#FFFFFF',
+        border: '1px solid #E0E0E8',
+        borderRadius: '12px',
+        boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)',
+      }}
+      onClick={onClick}
+    >
+      {/* Flag Emoji */}
+      <div 
+        className="flex items-center justify-center flex-shrink-0"
+        style={{
+          width: '44px',
+          height: '44px',
+          backgroundColor: '#F5F5F5',
+          borderRadius: '10px',
+          fontSize: '24px',
+        }}
+      >
+        {flag}
+      </div>
+      
+      {/* Language Name */}
+      <div className="flex-1">
+        <h3 className="font-bold" style={{ color: '#1E2A3A', fontSize: '15px' }}>
+          {language}
+        </h3>
+      </div>
+      
+      {/* Checkmark */}
+      {isSelected ? (
+        <CheckCircle2 
+          size={24} 
+          style={{ color: '#10B981' }}
+          fill="#10B981"
+        />
+      ) : (
+        <Circle 
+          size={24} 
+          style={{ color: '#D1D5DB' }}
+        />
+      )}
+    </button>
+  );
+}
