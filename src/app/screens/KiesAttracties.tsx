@@ -159,14 +159,13 @@ function AttractionCard({
   const navigate = useNavigate();
 
   const handleCardClick = (e: React.MouseEvent) => {
-    // If clicking on the checkbox area, toggle selection
-    const target = e.target as HTMLElement;
-    if (target.closest('.checkbox-area')) {
-      onToggle();
-    } else {
-      // Otherwise navigate to detail
-      navigate(`/attractie/${slug}`);
-    }
+    // Navigate to detail page
+    navigate(`/attractie/${slug}`);
+  };
+
+  const handleCheckboxClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onToggle();
   };
 
   return (
@@ -204,29 +203,42 @@ function AttractionCard({
         </p>
       </div>
       
-      {/* Checkbox */}
-      <div 
-        className="checkbox-area flex items-center justify-center flex-shrink-0"
+      {/* Checkbox - Much larger hit area */}
+      <button
+        onClick={handleCheckboxClick}
+        className="flex items-center justify-center flex-shrink-0"
         style={{
-          width: '24px',
-          height: '24px',
-          border: checked ? '2px solid #2C3E50' : '2px solid #C0C0CC',
-          borderRadius: '6px',
-          backgroundColor: checked ? '#2C3E50' : 'transparent',
+          width: '56px',
+          height: '56px',
+          padding: '16px',
+          marginRight: '-12px',
         }}
       >
-        {checked && (
-          <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
-            <path 
-              d="M1 5L5 9L13 1" 
-              stroke="#FFFFFF" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-            />
-          </svg>
-        )}
-      </div>
+        <div 
+          style={{
+            width: '24px',
+            height: '24px',
+            border: checked ? '2px solid #2C3E50' : '2px solid #C0C0CC',
+            borderRadius: '6px',
+            backgroundColor: checked ? '#2C3E50' : 'transparent',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          {checked && (
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+              <path 
+                d="M1 5L5 9L13 1" 
+                stroke="#FFFFFF" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              />
+            </svg>
+          )}
+        </div>
+      </button>
     </button>
   );
 }
