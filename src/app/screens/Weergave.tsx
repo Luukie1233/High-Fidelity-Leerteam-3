@@ -181,11 +181,12 @@ export default function Weergave() {
               }}
             >
               <div
-                className="absolute top-1 rounded-full transition-all duration-300"
+                className="absolute rounded-full transition-all duration-300"
                 style={{
                   width: '27px',
                   height: '27px',
                   backgroundColor: '#FFFFFF',
+                  top: '2px',
                   left: voiceAssistant ? '22px' : '2px',
                   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
                 }}

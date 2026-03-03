@@ -4,20 +4,13 @@ import { useNavigate } from 'react-router';
 import { PhoneFrame } from '../components/PhoneFrame';
 import { TabBar } from '../components/TabBar';
 import { useLanguage } from '../i18n/LanguageContext';
+import { usePlanner } from '../planner/PlannerContext';
 
 export default function KiesAttracties() {
   const navigate = useNavigate();
   const { t } = useLanguage();
-  const [selectedAttractions, setSelectedAttractions] = useState<number[]>([1]);
+  const { selectedAttractions, toggleAttraction } = usePlanner();
   const [searchQuery, setSearchQuery] = useState('');
-
-  const toggleAttraction = (id: number) => {
-    setSelectedAttractions(prev =>
-      prev.includes(id)
-        ? prev.filter(item => item !== id)
-        : [...prev, id]
-    );
-  };
 
   const attractions = [
     { id: 1, name: t('attrTornado') as string, duration: '15 min', zone: 'Zone A', slug: 'tornado' },

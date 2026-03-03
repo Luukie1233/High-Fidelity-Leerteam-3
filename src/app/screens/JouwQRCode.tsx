@@ -4,10 +4,29 @@ import { QRCodeSVG } from 'qrcode.react';
 import { PhoneFrame } from '../components/PhoneFrame';
 import { TabBar } from '../components/TabBar';
 import { useLanguage } from '../i18n/LanguageContext';
+import { usePlanner } from '../planner/PlannerContext';
+import type { TranslationKey } from '../i18n/translations';
+
+const attractionKeys: Record<number, TranslationKey> = {
+  1: 'attrTornado',
+  2: 'attrToekomstzone',
+  3: 'attrSprookjesbos',
+  4: 'attrWaterglijbaan',
+  5: 'attrAchtbaan',
+  6: 'attrPiratenboot',
+};
+
+const facilityKeys: Record<string, TranslationKey> = {
+  mindervaliden: 'facilityDisabled',
+  kinderwagen: 'facilityStroller',
+  rollator: 'facilityWheelchair',
+  geen: 'facilityNone',
+};
 
 export default function JouwQRCode() {
   const navigate = useNavigate();
   const { t } = useLanguage();
+  const { selectedAttractions, selectedFacilities, groupSize } = usePlanner();
 
   const handleShare = () => {
     // Share functionality
@@ -72,8 +91,8 @@ export default function JouwQRCode() {
           <div className="relative mb-6">
             {/* QR Code */}
             <div className="p-4 bg-white">
-              <QRCodeSVG 
-                value="LakeSideMania-VanDijk-4personen-20260303"
+              <QRCodeSVG
+                value={`LakeSideMania-VanDijk-${groupSize}personen-20260303`}
                 size={200}
                 level="H"
                 includeMargin={false}
@@ -146,7 +165,7 @@ export default function JouwQRCode() {
             {t('familyName') as string}
           </h2>
           <p style={{ color: '#6B7280', fontSize: '14px' }}>
-            {t('personsQR') as string}
+            {groupSize} {t('persons') as string} · 1 QR-code
           </p>
         </div>
 
@@ -169,28 +188,57 @@ export default function JouwQRCode() {
 
           {/* Attractions */}
           <div>
-            <p 
+            <p
               className="font-semibold mb-1"
               style={{ color: '#1E2A3A', fontSize: '14px' }}
             >
               {t('selectedAttractions') as string}
             </p>
+            {selectedAttractions.length > 0 ? (
+              selectedAttractions.map((id) => (
+                <p key={id} style={{ color: '#6B7280', fontSize: '14px' }}>
+                  • {attractionKeys[id] ? t(attractionKeys[id]) as string : `Attractie ${id}`}
+                </p>
+              ))
+            ) : (
+              <p style={{ color: '#6B7280', fontSize: '14px' }}>
+                —
+              </p>
+            )}
+          </div>
+
+          {/* Group Size */}
+          <div>
+            <p
+              className="font-semibold mb-1"
+              style={{ color: '#1E2A3A', fontSize: '14px' }}
+            >
+              {t('familySize') as string}
+            </p>
             <p style={{ color: '#6B7280', fontSize: '14px' }}>
-              • De Tornado
+              {groupSize} {t('persons') as string}
             </p>
           </div>
 
           {/* Bus Facility */}
           <div>
-            <p 
+            <p
               className="font-semibold mb-1"
               style={{ color: '#1E2A3A', fontSize: '14px' }}
             >
               {t('busFacility') as string}
             </p>
-            <p style={{ color: '#6B7280', fontSize: '14px' }}>
-              {t('noSpecialFacility') as string}
-            </p>
+            {selectedFacilities.size > 0 ? (
+              Array.from(selectedFacilities).map((facility) => (
+                <p key={facility} style={{ color: '#6B7280', fontSize: '14px' }}>
+                  • {facilityKeys[facility] ? t(facilityKeys[facility]) as string : facility}
+                </p>
+              ))
+            ) : (
+              <p style={{ color: '#6B7280', fontSize: '14px' }}>
+                {t('noSpecialFacility') as string}
+              </p>
+            )}
           </div>
         </div>
       </div>

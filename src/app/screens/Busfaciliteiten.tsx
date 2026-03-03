@@ -1,17 +1,14 @@
-import { useState } from 'react';
 import { ArrowLeft, Minus, Plus } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { PhoneFrame } from '../components/PhoneFrame';
 import { TabBar } from '../components/TabBar';
 import { useLanguage } from '../i18n/LanguageContext';
-
-type FacilityOption = 'mindervaliden' | 'kinderwagen' | 'rollator' | 'geen';
+import { usePlanner, type FacilityOption } from '../planner/PlannerContext';
 
 export default function Busfaciliteiten() {
   const navigate = useNavigate();
   const { t } = useLanguage();
-  const [selectedOptions, setSelectedOptions] = useState<Set<FacilityOption>>(new Set());
-  const [groupSize, setGroupSize] = useState(4);
+  const { selectedFacilities: selectedOptions, toggleFacility, groupSize, setGroupSize } = usePlanner();
 
   const facilities = [
     { id: 'mindervaliden' as FacilityOption, emoji: '♿', bg: '#D4E4FF', label: t('facilityDisabled') as string },
@@ -26,16 +23,6 @@ export default function Busfaciliteiten() {
 
   const incrementSize = () => {
     if (groupSize < 10) setGroupSize(groupSize + 1);
-  };
-
-  const toggleOption = (option: FacilityOption) => {
-    const newOptions = new Set(selectedOptions);
-    if (newOptions.has(option)) {
-      newOptions.delete(option);
-    } else {
-      newOptions.add(option);
-    }
-    setSelectedOptions(newOptions);
   };
 
   return (
@@ -103,7 +90,7 @@ export default function Busfaciliteiten() {
               iconBg={facility.bg}
               label={facility.label}
               selected={selectedOptions.has(facility.id)}
-              onSelect={() => toggleOption(facility.id)}
+              onSelect={() => toggleFacility(facility.id)}
             />
           ))}
 
