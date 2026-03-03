@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router';
 import { PhoneFrame } from '../components/PhoneFrame';
 import { TabBar } from '../components/TabBar';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function Plattegrond() {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   return (
     <PhoneFrame>
@@ -20,7 +22,7 @@ export default function Plattegrond() {
           className="text-xl font-bold"
           style={{ color: '#1E2A3A' }}
         >
-          Plattegrond
+          {t('mapTitle') as string}
         </h1>
       </div>
 
@@ -62,7 +64,7 @@ export default function Plattegrond() {
           <BusStop
             emoji="🚏"
             label="H1"
-            name="Ingang"
+            name={t('stopIngang') as string}
             top="30px"
             right="30px"
             onClick={() => navigate('/bushalte/h1')}
@@ -72,7 +74,7 @@ export default function Plattegrond() {
           <BusStop
             emoji="🎢"
             label="H2"
-            name="Avonturenland"
+            name={t('stopAvonturenland') as string}
             top="130px"
             left="25px"
             onClick={() => navigate('/bushalte/h2')}
@@ -82,7 +84,7 @@ export default function Plattegrond() {
           <BusStop
             emoji="🧩"
             label="H3"
-            name="Kruispunt"
+            name={t('stopKruispunt') as string}
             top="160px"
             left="120px"
             onClick={() => navigate('/bushalte/h3')}
@@ -115,7 +117,7 @@ export default function Plattegrond() {
           <BusStop
             emoji="🚀"
             label="H4"
-            name="Toekomstzone"
+            name={t('stopToekomstzone') as string}
             top="120px"
             right="25px"
             onClick={() => navigate('/bushalte/h4')}
@@ -125,7 +127,7 @@ export default function Plattegrond() {
           <BusStop
             emoji="⭐"
             label="H5"
-            name="Dromenpark"
+            name={t('stopDromenpark') as string}
             top="240px"
             left="140px"
             onClick={() => navigate('/bushalte/h5')}
@@ -135,7 +137,7 @@ export default function Plattegrond() {
           <BusStop
             emoji="💧"
             label="H6"
-            name="Uitgang"
+            name={t('stopUitgang') as string}
             bottom="25px"
             left="130px"
             onClick={() => navigate('/bushalte/h6')}
@@ -152,9 +154,9 @@ export default function Plattegrond() {
             color: '#6B7280',
           }}
         >
-          <span>🚏 Halte</span>
-          <span>🚌 Bus (live)</span>
-          <span>👆 Tap voor details</span>
+          <span>🚏 {t('mapLegendStop') as string}</span>
+          <span>🚌 {t('mapLegendBus') as string}</span>
+          <span>👆 {t('mapLegendTap') as string}</span>
         </div>
 
         {/* Live Shuttle Info Card */}
@@ -186,7 +188,7 @@ export default function Plattegrond() {
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">
               <span className="font-bold" style={{ color: '#FFFFFF', fontSize: '16px' }}>
-                Shuttlebus → H5 Dromenpark
+                {t('mapShuttleTo') as string}
               </span>
               <span 
                 className="px-2 py-0.5 text-xs font-bold"
@@ -200,7 +202,7 @@ export default function Plattegrond() {
               </span>
             </div>
             <p style={{ color: '#A0A0A8', fontSize: '13px' }}>
-              52/80 personen · Aankomst 2 min
+              {t('mapPersonsArrival') as string}
             </p>
           </div>
         </div>

@@ -2,10 +2,12 @@ import { ArrowLeft } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router';
 import { PhoneFrame } from '../components/PhoneFrame';
 import { TabBar } from '../components/TabBar';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function BusHalteDetail() {
   const navigate = useNavigate();
   const { id } = useParams();
+  const { t } = useLanguage();
 
   const halteData: Record<string, {
     emoji: string;
@@ -22,117 +24,117 @@ export default function BusHalteDetail() {
       emoji: '🚏',
       iconBg: '#E8F4FD',
       label: 'H1',
-      name: 'Ingang',
-      description: 'De hoofdingang van Lake Side Mania. Start hier je avontuur!',
+      name: t('stopIngang') as string,
+      description: t('h1Desc') as string,
       nextBus: '2 min',
-      busFrequency: 'Om de 3 minuten',
+      busFrequency: t('busEvery3Min') as string,
       facilities: [
-        { icon: '🎫', name: 'Ticketbalie', distance: '20m' },
-        { icon: '🚻', name: 'Toiletten', distance: '30m' },
-        { icon: '🏪', name: 'Souvenirshop', distance: '50m' },
-        { icon: 'ℹ️', name: 'Informatiecentrum', distance: '25m' },
+        { icon: '🎫', name: t('facilityTicketCounter') as string, distance: '20m' },
+        { icon: '🚻', name: t('facilityToilets') as string, distance: '30m' },
+        { icon: '🏪', name: t('facilitySouvenirShop') as string, distance: '50m' },
+        { icon: 'ℹ️', name: t('facilityInfoCenter') as string, distance: '25m' },
       ],
       nearbyAttractions: [
-        { name: 'Welkomstplein', walkTime: '1 min' },
-        { name: 'Foto Point', walkTime: '2 min' },
+        { name: t('nearWelkomstplein') as string, walkTime: '1 min' },
+        { name: t('nearFotoPoint') as string, walkTime: '2 min' },
       ],
     },
     'h2': {
       emoji: '🎢',
       iconBg: '#FFE8D4',
       label: 'H2',
-      name: 'Avonturenland',
-      description: 'Het hart van de actie! Hier vind je onze meest spannende achtbanen.',
+      name: t('stopAvonturenland') as string,
+      description: t('h2Desc') as string,
       nextBus: '5 min',
-      busFrequency: 'Om de 3 minuten',
+      busFrequency: t('busEvery3Min') as string,
       facilities: [
-        { icon: '🍔', name: 'Snackbar Twister', distance: '40m' },
-        { icon: '🚻', name: 'Toiletten', distance: '25m' },
-        { icon: '🎮', name: 'Arcade Hall', distance: '60m' },
-        { icon: '🏥', name: 'EHBO Post', distance: '80m' },
+        { icon: '🍔', name: t('facilitySnackBar') as string, distance: '40m' },
+        { icon: '🚻', name: t('facilityToilets') as string, distance: '25m' },
+        { icon: '🎮', name: t('facilityArcade') as string, distance: '60m' },
+        { icon: '🏥', name: t('facilityFirstAid') as string, distance: '80m' },
       ],
       nearbyAttractions: [
-        { name: 'De Tornado', walkTime: '2 min' },
-        { name: 'Vrije Val', walkTime: '3 min' },
-        { name: 'Loop-de-Loop', walkTime: '5 min' },
+        { name: t('nearDeTornado') as string, walkTime: '2 min' },
+        { name: t('nearVrijeVal') as string, walkTime: '3 min' },
+        { name: t('nearLoopDeLoop') as string, walkTime: '5 min' },
       ],
     },
     'h3': {
       emoji: '🧩',
       iconBg: '#F0E8FF',
       label: 'H3',
-      name: 'Kruispunt',
-      description: 'Centrale locatie met gemakkelijke toegang tot alle zones.',
+      name: t('stopKruispunt') as string,
+      description: t('h3Desc') as string,
       nextBus: '1 min',
-      busFrequency: 'Om de 3 minuten',
+      busFrequency: t('busEvery3Min') as string,
       facilities: [
-        { icon: '🍕', name: 'Restaurant Meerterras', distance: '15m' },
-        { icon: '☕', name: 'Coffee Corner', distance: '30m' },
-        { icon: '🚻', name: 'Toiletten', distance: '20m' },
-        { icon: '💧', name: 'Drinkfontein', distance: '10m' },
+        { icon: '🍕', name: t('facilityRestaurant') as string, distance: '15m' },
+        { icon: '☕', name: t('facilityCoffee') as string, distance: '30m' },
+        { icon: '🚻', name: t('facilityToilets') as string, distance: '20m' },
+        { icon: '💧', name: t('facilityFountain') as string, distance: '10m' },
       ],
       nearbyAttractions: [
-        { name: 'Speeltuin Wonderland', walkTime: '2 min' },
-        { name: 'Reuzenrad', walkTime: '4 min' },
+        { name: t('nearSpeeltuin') as string, walkTime: '2 min' },
+        { name: t('nearReuzenrad') as string, walkTime: '4 min' },
       ],
     },
     'h4': {
       emoji: '🚀',
       iconBg: '#E8F0FF',
       label: 'H4',
-      name: 'Toekomstzone',
-      description: 'Futuristische attracties en innovatieve ervaringen wachten op je.',
+      name: t('stopToekomstzone') as string,
+      description: t('h4Desc') as string,
       nextBus: '4 min',
-      busFrequency: 'Om de 3 minuten',
+      busFrequency: t('busEvery3Min') as string,
       facilities: [
-        { icon: '🍿', name: '4D Cinema Snacks', distance: '35m' },
-        { icon: '🚻', name: 'Toiletten', distance: '40m' },
-        { icon: '🎬', name: '4D Cinema', distance: '50m' },
-        { icon: '🎪', name: 'VR Experience', distance: '70m' },
+        { icon: '🍿', name: t('facilityCinemaSnacks') as string, distance: '35m' },
+        { icon: '🚻', name: t('facilityToilets') as string, distance: '40m' },
+        { icon: '🎬', name: t('facilityCinema') as string, distance: '50m' },
+        { icon: '🎪', name: t('facilityVR') as string, distance: '70m' },
       ],
       nearbyAttractions: [
-        { name: 'Ruimte Odyssee', walkTime: '2 min' },
-        { name: 'Galactic Spinner', walkTime: '3 min' },
-        { name: 'Laser Quest', walkTime: '5 min' },
+        { name: t('nearRuimteOdyssee') as string, walkTime: '2 min' },
+        { name: t('nearGalacticSpinner') as string, walkTime: '3 min' },
+        { name: t('nearLaserQuest') as string, walkTime: '5 min' },
       ],
     },
     'h5': {
       emoji: '⭐',
       iconBg: '#FFF4E8',
       label: 'H5',
-      name: 'Dromenpark',
-      description: 'Magische omgeving perfect voor families en kinderen.',
+      name: t('stopDromenpark') as string,
+      description: t('h5Desc') as string,
       nextBus: '6 min',
-      busFrequency: 'Om de 3 minuten',
+      busFrequency: t('busEvery3Min') as string,
       facilities: [
-        { icon: '🍦', name: 'IJssalon Dromen', distance: '25m' },
-        { icon: '🚻', name: 'Toiletten + Verschoonruimte', distance: '30m' },
-        { icon: '🎠', name: 'Kinderspeelzone', distance: '20m' },
-        { icon: '🎪', name: 'Theater (15:00 show)', distance: '45m' },
+        { icon: '🍦', name: t('facilityIceCream') as string, distance: '25m' },
+        { icon: '🚻', name: t('facilityToiletsChanging') as string, distance: '30m' },
+        { icon: '🎠', name: t('facilityKidsZone') as string, distance: '20m' },
+        { icon: '🎪', name: t('facilityTheater') as string, distance: '45m' },
       ],
       nearbyAttractions: [
-        { name: 'Sprookjesbos', walkTime: '2 min' },
-        { name: 'Draaimolen Magie', walkTime: '1 min' },
-        { name: 'Waterplezier', walkTime: '4 min' },
+        { name: t('nearSprookjesbos') as string, walkTime: '2 min' },
+        { name: t('nearDraaimolen') as string, walkTime: '1 min' },
+        { name: t('nearWaterplezier') as string, walkTime: '4 min' },
       ],
     },
     'h6': {
       emoji: '💧',
       iconBg: '#E8F8FF',
       label: 'H6',
-      name: 'Uitgang',
-      description: 'Uitgang en toegang tot waterattracties. Tot snel!',
+      name: t('stopUitgang') as string,
+      description: t('h6Desc') as string,
       nextBus: '3 min',
-      busFrequency: 'Om de 3 minuten',
+      busFrequency: t('busEvery3Min') as string,
       facilities: [
-        { icon: '🏪', name: 'Souvenirshop Uitgang', distance: '25m' },
-        { icon: '🚻', name: 'Toiletten', distance: '20m' },
-        { icon: '🅿️', name: 'Parkeerplaats', distance: '100m' },
-        { icon: '🎁', name: 'Foto Pickup', distance: '30m' },
+        { icon: '🏪', name: t('facilitySouvenirExit') as string, distance: '25m' },
+        { icon: '🚻', name: t('facilityToilets') as string, distance: '20m' },
+        { icon: '🅿️', name: t('facilityParking') as string, distance: '100m' },
+        { icon: '🎁', name: t('facilityPhotoPickup') as string, distance: '30m' },
       ],
       nearbyAttractions: [
-        { name: 'De Waterval (binnenkort)', walkTime: '3 min' },
-        { name: 'Wildwaterbaan', walkTime: '5 min' },
+        { name: t('nearWaterval') as string, walkTime: '3 min' },
+        { name: t('nearWildwaterbaan') as string, walkTime: '5 min' },
       ],
     },
   };
@@ -143,7 +145,7 @@ export default function BusHalteDetail() {
     return (
       <PhoneFrame>
         <div className="flex items-center justify-center h-full">
-          <p style={{ color: '#6B7280' }}>Halte niet gevonden</p>
+          <p style={{ color: '#6B7280' }}>{t('stopNotFound') as string}</p>
         </div>
       </PhoneFrame>
     );
@@ -172,7 +174,7 @@ export default function BusHalteDetail() {
           className="flex-1 text-center font-bold mr-10"
           style={{ color: '#1E2A3A', fontSize: '18px' }}
         >
-          Halte Details
+          {t('stopDetails') as string}
         </h1>
       </div>
 
@@ -242,7 +244,7 @@ export default function BusHalteDetail() {
             </div>
             <div className="flex-1">
               <h3 className="font-bold" style={{ color: '#FFFFFF', fontSize: '16px' }}>
-                Volgende bus
+                {t('nextBus') as string}
               </h3>
               <p style={{ color: '#A0A0A8', fontSize: '13px' }}>
                 {halte.busFrequency}
@@ -269,7 +271,7 @@ export default function BusHalteDetail() {
             }}
             onClick={() => navigate('/busstatus')}
           >
-            🗺️ Bekijk live buslocaties
+            🗺️ {t('viewLiveBus') as string}
           </button>
         </div>
 
@@ -284,7 +286,7 @@ export default function BusHalteDetail() {
           }}
         >
           <h3 className="font-bold mb-3" style={{ color: '#1E2A3A', fontSize: '16px' }}>
-            📍 Faciliteiten in de buurt
+            📍 {t('facilitiesNearby') as string}
           </h3>
           <div className="space-y-2">
             {halte.facilities.map((facility, index) => (
@@ -323,7 +325,7 @@ export default function BusHalteDetail() {
           }}
         >
           <h3 className="font-bold mb-3" style={{ color: '#1E2A3A', fontSize: '16px' }}>
-            🎢 Attracties in de buurt
+            🎢 {t('attractionsNearby') as string}
           </h3>
           <div className="space-y-2">
             {halte.nearbyAttractions.map((attraction, index) => (

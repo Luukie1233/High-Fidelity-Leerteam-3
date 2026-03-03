@@ -2,76 +2,77 @@ import { ArrowLeft } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router';
 import { PhoneFrame } from '../components/PhoneFrame';
 import { TabBar } from '../components/TabBar';
-
-// Mock attraction data
-const attractionsData = {
-  'tornado': {
-    name: 'De Tornado',
-    emoji: '🎢',
-    bgColor: '#E8D4FF',
-    waitTime: '15 min',
-    stopNumber: 'H2',
-    stopName: 'Avonturenland',
-    busArrival: 'Aankomst over 3 minuten',
-  },
-  'toekomstzone': {
-    name: 'Toekomstzone',
-    emoji: '🚀',
-    bgColor: '#D4E8FF',
-    waitTime: '22 min',
-    stopNumber: 'H4',
-    stopName: 'Toekomstzone',
-    busArrival: 'Aankomst over 2 minuten',
-  },
-  'sprookjesbos': {
-    name: 'Sprookjesbos',
-    emoji: '🧚',
-    bgColor: '#D1F4E0',
-    waitTime: '8 min',
-    stopNumber: 'H1',
-    stopName: 'Sprookjesland',
-    busArrival: 'Aankomst over 5 minuten',
-  },
-  'waterglijbaan': {
-    name: 'Waterglijbaan Splash',
-    emoji: '🌊',
-    bgColor: '#D4F4FF',
-    waitTime: '18 min',
-    stopNumber: 'H5',
-    stopName: 'Waterwereld',
-    busArrival: 'Aankomst over 7 minuten',
-  },
-  'achtbaan': {
-    name: 'Mega Achtbaan',
-    emoji: '🎪',
-    bgColor: '#FFE4F0',
-    waitTime: '35 min',
-    stopNumber: 'H3',
-    stopName: 'Thrillzone',
-    busArrival: 'Aankomst over 4 minuten',
-  },
-  'piratenboot': {
-    name: 'Piratenboot',
-    emoji: '🏴‍☠️',
-    bgColor: '#FFF4D4',
-    waitTime: '12 min',
-    stopNumber: 'H6',
-    stopName: 'Piratenbaai',
-    busArrival: 'Aankomst over 6 minuten',
-  },
-};
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function AttractieDetail() {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-  
-  const attraction = id ? attractionsData[id as keyof typeof attractionsData] : attractionsData.tornado;
+  const { t } = useLanguage();
+
+  const attractionsData: Record<string, { name: string; emoji: string; bgColor: string; waitTime: string; stopNumber: string; stopName: string; busArrival: string }> = {
+    'tornado': {
+      name: t('attrTornado') as string,
+      emoji: '🎢',
+      bgColor: '#E8D4FF',
+      waitTime: '15 min',
+      stopNumber: 'H2',
+      stopName: t('attrTornadoStop') as string,
+      busArrival: t('attrTornadoBus') as string,
+    },
+    'toekomstzone': {
+      name: t('attrToekomstzone') as string,
+      emoji: '🚀',
+      bgColor: '#D4E8FF',
+      waitTime: '22 min',
+      stopNumber: 'H4',
+      stopName: t('attrToekomstzoneStop') as string,
+      busArrival: t('attrToekomstzoneBus') as string,
+    },
+    'sprookjesbos': {
+      name: t('attrSprookjesbos') as string,
+      emoji: '🧚',
+      bgColor: '#D1F4E0',
+      waitTime: '8 min',
+      stopNumber: 'H1',
+      stopName: t('attrSprookjesbosStop') as string,
+      busArrival: t('attrSprookjesbosBus') as string,
+    },
+    'waterglijbaan': {
+      name: t('attrWaterglijbaan') as string,
+      emoji: '🌊',
+      bgColor: '#D4F4FF',
+      waitTime: '18 min',
+      stopNumber: 'H5',
+      stopName: t('attrWaterglijbaanStop') as string,
+      busArrival: t('attrWaterglijbaanBus') as string,
+    },
+    'achtbaan': {
+      name: t('attrAchtbaan') as string,
+      emoji: '🎪',
+      bgColor: '#FFE4F0',
+      waitTime: '35 min',
+      stopNumber: 'H3',
+      stopName: t('attrAchtbaanStop') as string,
+      busArrival: t('attrAchtbaanBus') as string,
+    },
+    'piratenboot': {
+      name: t('attrPiratenboot') as string,
+      emoji: '🏴‍☠️',
+      bgColor: '#FFF4D4',
+      waitTime: '12 min',
+      stopNumber: 'H6',
+      stopName: t('attrPiratenbootStop') as string,
+      busArrival: t('attrPiratenbootBus') as string,
+    },
+  };
+
+  const attraction = id ? attractionsData[id] : attractionsData['tornado'];
 
   if (!attraction) {
     return (
       <PhoneFrame>
         <div className="flex items-center justify-center h-full">
-          <p style={{ color: '#6B7280' }}>Attractie niet gevonden</p>
+          <p style={{ color: '#6B7280' }}>{t('attractionNotFound') as string}</p>
         </div>
       </PhoneFrame>
     );
@@ -140,7 +141,7 @@ export default function AttractieDetail() {
           <InfoCard
             icon="⏱"
             iconBg="#FFF4D4"
-            title="Wachttijd"
+            title={t('waitTime') as string}
             value={attraction.waitTime}
           />
 
@@ -148,7 +149,7 @@ export default function AttractieDetail() {
           <InfoCard
             icon="📍"
             iconBg="#FFD4D4"
-            title="Halte"
+            title={t('stop') as string}
             subtitle={`${attraction.stopNumber} – ${attraction.stopName}`}
           />
 
@@ -180,7 +181,7 @@ export default function AttractieDetail() {
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-1">
                 <span className="font-bold" style={{ color: '#1E2A3A', fontSize: '15px' }}>
-                  Volgende bus
+                  {t('nextBus') as string}
                 </span>
                 <span 
                   className="px-2 py-0.5 text-xs font-bold"
@@ -213,7 +214,7 @@ export default function AttractieDetail() {
           }}
           onClick={() => navigate('/kies-attracties')}
         >
-          Voeg toe aan plan
+          {t('addToPlan') as string}
         </button>
       </div>
 

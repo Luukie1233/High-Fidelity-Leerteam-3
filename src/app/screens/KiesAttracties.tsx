@@ -3,9 +3,11 @@ import { ArrowLeft, Search } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { PhoneFrame } from '../components/PhoneFrame';
 import { TabBar } from '../components/TabBar';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function KiesAttracties() {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [selectedAttractions, setSelectedAttractions] = useState<number[]>([1]);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -18,12 +20,12 @@ export default function KiesAttracties() {
   };
 
   const attractions = [
-    { id: 1, name: 'De Tornado', duration: '15 min', zone: 'Zone A', slug: 'tornado' },
-    { id: 2, name: 'Toekomstzone', duration: '22 min', zone: 'Zone D', slug: 'toekomstzone' },
-    { id: 3, name: 'Sprookjesbos', duration: '8 min', zone: 'Zone A', slug: 'sprookjesbos' },
-    { id: 4, name: 'Waterglijbaan Splash', duration: '18 min', zone: 'Zone E', slug: 'waterglijbaan' },
-    { id: 5, name: 'Mega Achtbaan', duration: '35 min', zone: 'Zone C', slug: 'achtbaan' },
-    { id: 6, name: 'Piratenboot', duration: '12 min', zone: 'Zone F', slug: 'piratenboot' },
+    { id: 1, name: t('attrTornado') as string, duration: '15 min', zone: 'Zone A', slug: 'tornado' },
+    { id: 2, name: t('attrToekomstzone') as string, duration: '22 min', zone: 'Zone D', slug: 'toekomstzone' },
+    { id: 3, name: t('attrSprookjesbos') as string, duration: '8 min', zone: 'Zone A', slug: 'sprookjesbos' },
+    { id: 4, name: t('attrWaterglijbaan') as string, duration: '18 min', zone: 'Zone E', slug: 'waterglijbaan' },
+    { id: 5, name: t('attrAchtbaan') as string, duration: '35 min', zone: 'Zone C', slug: 'achtbaan' },
+    { id: 6, name: t('attrPiratenboot') as string, duration: '12 min', zone: 'Zone F', slug: 'piratenboot' },
   ];
 
   return (
@@ -49,7 +51,7 @@ export default function KiesAttracties() {
           className="text-xl font-bold"
           style={{ color: '#1E2A3A' }}
         >
-          Kies Attracties
+          {t('chooseAttractions') as string}
         </h1>
         
         {/* Step Indicator */}
@@ -86,7 +88,7 @@ export default function KiesAttracties() {
           <Search size={20} style={{ color: '#9CA3AF' }} />
           <input
             type="text"
-            placeholder="Zoek attractie..."
+            placeholder={t('searchAttraction') as string}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="flex-1 outline-none"
@@ -127,9 +129,9 @@ export default function KiesAttracties() {
           }}
           onClick={() => navigate('/busfaciliteiten')}
         >
-          {selectedAttractions.length > 0 
-            ? `${selectedAttractions.length} attracties geselecteerd · Verder →`
-            : 'Selecteer attracties'
+          {selectedAttractions.length > 0
+            ? `${selectedAttractions.length} ${t('attractionsSelected') as string} · ${t('further') as string} →`
+            : t('selectAttractions') as string
           }
         </button>
       </div>

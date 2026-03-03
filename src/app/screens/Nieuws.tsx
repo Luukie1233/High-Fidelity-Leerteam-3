@@ -1,58 +1,60 @@
 import { PhoneFrame } from '../components/PhoneFrame';
 import { TabBar } from '../components/TabBar';
 import { useNavigate } from 'react-router';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function Nieuws() {
   const navigate = useNavigate();
-  
+  const { t } = useLanguage();
+
   const newsItems = [
     {
       id: 1,
       emoji: '🎢',
       iconBg: '#FFE8D4',
-      title: 'De Waterval opent deze zomer!',
-      subtitle: 'Lake Side Mania\'s grootste waterattractie komt eraan. Met een 25 meter hoge val en spectaculaire effecten.',
-      timestamp: '3 uur geleden',
+      title: t('news1Title') as string,
+      subtitle: t('news1Sub') as string,
+      timestamp: t('news1Time') as string,
     },
     {
       id: 2,
       emoji: '🌙',
       iconBg: '#E8D4FF',
-      title: 'Avondopenstelling dit weekend',
-      subtitle: 'Park blijft open tot 23:00 uur. Geniet van verlichtte attracties en een spectaculaire vuurwerkshow om 22:30.',
-      timestamp: '5 uur geleden',
+      title: t('news2Title') as string,
+      subtitle: t('news2Sub') as string,
+      timestamp: t('news2Time') as string,
     },
     {
       id: 3,
       emoji: '🍕',
       iconBg: '#FFD4D4',
-      title: 'Nieuw restaurant: Meerterras',
-      subtitle: 'Proef de Italiaanse keuken met uitzicht op het meer. Nu geopend naast halte H3!',
-      timestamp: '1 dag geleden',
+      title: t('news3Title') as string,
+      subtitle: t('news3Sub') as string,
+      timestamp: t('news3Time') as string,
     },
     {
       id: 4,
       emoji: '🚌',
       iconBg: '#D4E4FF',
-      title: 'Extra shuttlebussen ingezet',
-      subtitle: 'Door de drukte rijden er nu om de 3 minuten bussen. Korte wachttijden gegarandeerd!',
-      timestamp: '1 dag geleden',
+      title: t('news4Title') as string,
+      subtitle: t('news4Sub') as string,
+      timestamp: t('news4Time') as string,
     },
     {
       id: 5,
       emoji: '🎭',
       iconBg: '#FFF4D4',
-      title: 'Piratenshow om 15:00 uur',
-      subtitle: 'Captain Jack en zijn bemanning nemen het park over! Spectaculaire stunts bij het Dromenpark.',
-      timestamp: '2 dagen geleden',
+      title: t('news5Title') as string,
+      subtitle: t('news5Sub') as string,
+      timestamp: t('news5Time') as string,
     },
     {
       id: 6,
       emoji: '☀️',
       iconBg: '#FFEDD4',
-      title: 'Weerbericht: Perfect parkweer',
-      subtitle: 'Komende week zonnig en 24°C. Ideaal voor een dag vol avontuur bij Lake Side Mania!',
-      timestamp: '3 dagen geleden',
+      title: t('news6Title') as string,
+      subtitle: t('news6Sub') as string,
+      timestamp: t('news6Time') as string,
     },
   ];
 
@@ -71,7 +73,7 @@ export default function Nieuws() {
           className="text-xl font-bold"
           style={{ color: '#1E2A3A' }}
         >
-          Nieuws & Updates
+          {t('newsTitle') as string}
         </h1>
       </div>
 

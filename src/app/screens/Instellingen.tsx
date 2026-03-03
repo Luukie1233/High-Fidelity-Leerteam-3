@@ -2,9 +2,11 @@ import { ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { PhoneFrame } from '../components/PhoneFrame';
 import { TabBar } from '../components/TabBar';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function Instellingen() {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   return (
     <PhoneFrame>
@@ -21,7 +23,7 @@ export default function Instellingen() {
           className="text-xl font-bold"
           style={{ color: '#1E2A3A' }}
         >
-          Instellingen
+          {t('settingsTitle') as string}
         </h1>
       </div>
 
@@ -33,8 +35,8 @@ export default function Instellingen() {
           <SettingCard
             icon="🌐"
             iconBg="#E8E8E8"
-            title="Taal"
-            subtitle="Nederlands"
+            title={t('settingsLanguage') as string}
+            subtitle={t('settingsLanguageSub') as string}
             onClick={() => navigate('/taal-kiezen')}
           />
 
@@ -42,8 +44,8 @@ export default function Instellingen() {
           <SettingCard
             icon="T"
             iconBg="#E8E8E8"
-            title="Weergave"
-            subtitle="Tekstgrootte & meer"
+            title={t('settingsDisplay') as string}
+            subtitle={t('settingsDisplaySub') as string}
             isTextIcon
             onClick={() => navigate('/weergave')}
           />
@@ -52,15 +54,15 @@ export default function Instellingen() {
           <SettingCard
             icon="🔊"
             iconBg="#E8E8E8"
-            title="Spraakassistent"
-            subtitle="Uit"
+            title={t('settingsVoice') as string}
+            subtitle={t('settingsVoiceOff') as string}
           />
 
           {/* About Setting */}
           <SettingCard
             icon="ℹ"
             iconBg="#E8E8E8"
-            title="Over Lake Side Mania"
+            title={t('settingsAbout') as string}
             subtitle="v1.0"
             isTextIcon
           />

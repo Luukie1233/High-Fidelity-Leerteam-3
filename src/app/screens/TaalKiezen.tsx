@@ -2,11 +2,11 @@ import { ArrowLeft, CheckCircle2, Circle } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { PhoneFrame } from '../components/PhoneFrame';
 import { TabBar } from '../components/TabBar';
-import { useState } from 'react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function TaalKiezen() {
   const navigate = useNavigate();
-  const [selectedLanguage, setSelectedLanguage] = useState('nl');
+  const { language, setLanguage, t } = useLanguage();
 
   return (
     <PhoneFrame>
@@ -31,7 +31,7 @@ export default function TaalKiezen() {
           className="text-xl font-bold"
           style={{ color: '#1E2A3A' }}
         >
-          Taal kiezen
+          {t('chooseLanguageTitle') as string}
         </h1>
         
         {/* Empty space for alignment */}
@@ -45,17 +45,17 @@ export default function TaalKiezen() {
           {/* Dutch Option */}
           <LanguageOption
             flag="🇳🇱"
-            language="Nederlands"
-            isSelected={selectedLanguage === 'nl'}
-            onClick={() => setSelectedLanguage('nl')}
+            language={t('langDutch') as string}
+            isSelected={language === 'nl'}
+            onClick={() => setLanguage('nl')}
           />
 
           {/* English Option */}
           <LanguageOption
             flag="🇬🇧"
-            language="Engels"
-            isSelected={selectedLanguage === 'en'}
-            onClick={() => setSelectedLanguage('en')}
+            language={t('langEnglish') as string}
+            isSelected={language === 'en'}
+            onClick={() => setLanguage('en')}
           />
         </div>
       </div>

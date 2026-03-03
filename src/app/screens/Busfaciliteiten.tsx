@@ -3,19 +3,21 @@ import { ArrowLeft, Minus, Plus } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { PhoneFrame } from '../components/PhoneFrame';
 import { TabBar } from '../components/TabBar';
+import { useLanguage } from '../i18n/LanguageContext';
 
 type FacilityOption = 'mindervaliden' | 'kinderwagen' | 'rollator' | 'geen';
 
 export default function Busfaciliteiten() {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [selectedOptions, setSelectedOptions] = useState<Set<FacilityOption>>(new Set());
   const [groupSize, setGroupSize] = useState(4);
 
   const facilities = [
-    { id: 'mindervaliden' as FacilityOption, emoji: '♿', bg: '#D4E4FF', label: 'Zitplaats mindervaliden' },
-    { id: 'kinderwagen' as FacilityOption, emoji: '🍼', bg: '#FFF4D4', label: 'Kinderwagen-ruimte' },
-    { id: 'rollator' as FacilityOption, emoji: '🦽', bg: '#E8E8E8', label: 'Rollator/rolstoel' },
-    { id: 'geen' as FacilityOption, emoji: '✓', bg: '#E8E8E8', label: 'Geen reservering' },
+    { id: 'mindervaliden' as FacilityOption, emoji: '♿', bg: '#D4E4FF', label: t('facilityDisabled') as string },
+    { id: 'kinderwagen' as FacilityOption, emoji: '🍼', bg: '#FFF4D4', label: t('facilityStroller') as string },
+    { id: 'rollator' as FacilityOption, emoji: '🦽', bg: '#E8E8E8', label: t('facilityWheelchair') as string },
+    { id: 'geen' as FacilityOption, emoji: '✓', bg: '#E8E8E8', label: t('facilityNone') as string },
   ];
 
   const decrementSize = () => {
@@ -59,7 +61,7 @@ export default function Busfaciliteiten() {
           className="text-xl font-bold"
           style={{ color: '#1E2A3A' }}
         >
-          Busfaciliteiten
+          {t('busFacilitiesTitle') as string}
         </h1>
         
         {/* Step Indicator */}
@@ -86,7 +88,7 @@ export default function Busfaciliteiten() {
       {/* Subtitle */}
       <div className="px-6 pt-4 pb-3">
         <p style={{ color: '#6B7280', fontSize: '15px' }}>
-          Heb je een speciale plek nodig in de shuttlebus?
+          {t('busFacilitiesSubtitle') as string}
         </p>
       </div>
 
@@ -116,7 +118,7 @@ export default function Busfaciliteiten() {
             }}
           >
             <h3 className="font-bold mb-4" style={{ color: '#1E2A3A', fontSize: '16px' }}>
-              Gezinsgrootte
+              {t('familySize') as string}
             </h3>
             
             <div className="flex items-center justify-center gap-6">
@@ -141,7 +143,7 @@ export default function Busfaciliteiten() {
                   {groupSize}
                 </span>
                 <span style={{ color: '#6B7280', fontSize: '14px' }}>
-                  personen
+                  {t('persons') as string}
                 </span>
               </div>
 
@@ -176,7 +178,7 @@ export default function Busfaciliteiten() {
           }}
           onClick={() => navigate('/qr-code')}
         >
-          Genereer QR-code 🎟
+          {t('generateQR') as string} 🎟
         </button>
       </div>
 

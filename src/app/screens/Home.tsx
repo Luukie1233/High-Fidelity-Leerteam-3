@@ -3,10 +3,12 @@ import { useNavigate } from 'react-router';
 import { PhoneFrame } from '../components/PhoneFrame';
 import { TabBar } from '../components/TabBar';
 import { useState } from 'react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function Home() {
   const navigate = useNavigate();
   const [showFeedbackModal, setShowFeedbackModal] = useState(false);
+  const { t } = useLanguage();
 
   return (
     <PhoneFrame>
@@ -44,7 +46,7 @@ export default function Home() {
         
         {/* Subtitle */}
         <p style={{ color: '#6B7280', fontSize: '14px' }}>
-          Plan je dag & reis met de shuttlebus!
+          {t('homeSubtitle') as string}
         </p>
       </div>
 
@@ -54,8 +56,8 @@ export default function Home() {
         <Card
           icon="📅"
           iconBg="#D1F4E0"
-          title="Start Planner"
-          subtitle="Kies attracties & ontvang QR-code"
+          title={t('homeStartPlanner') as string}
+          subtitle={t('homeStartPlannerSub') as string}
           onClick={() => navigate('/kies-attracties')}
         />
 
@@ -63,8 +65,8 @@ export default function Home() {
         <Card
           icon="🗺️"
           iconBg="#FFD4D4"
-          title="Bekijk Kaart"
-          subtitle="Plattegrond & live businfo"
+          title={t('homeViewMap') as string}
+          subtitle={t('homeViewMapSub') as string}
           onClick={() => navigate('/plattegrond')}
         />
 
@@ -72,8 +74,8 @@ export default function Home() {
         <Card
           icon="📰"
           iconBg="#FFF4D4"
-          title="Nieuws & Acties"
-          subtitle="Updates van Lake Side Mania"
+          title={t('homeNews') as string}
+          subtitle={t('homeNewsSub') as string}
           onClick={() => navigate('/nieuws')}
         />
 
@@ -81,8 +83,8 @@ export default function Home() {
         <Card
           icon="💬"
           iconBg="#FFE4F0"
-          title="Geef Feedback"
-          subtitle="Vertel ons over je busrit"
+          title={t('homeFeedback') as string}
+          subtitle={t('homeFeedbackSub') as string}
           onClick={() => setShowFeedbackModal(true)}
         />
 
@@ -115,7 +117,7 @@ export default function Home() {
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">
               <span className="font-bold" style={{ color: '#FFFFFF', fontSize: '16px' }}>
-                Shuttlebus over 3 min
+                {t('homeShuttleIn') as string}
               </span>
               <span 
                 className="px-2 py-0.5 text-xs font-bold"
@@ -129,7 +131,7 @@ export default function Home() {
               </span>
             </div>
             <p style={{ color: '#A0A0A8', fontSize: '13px' }}>
-              Halte Centraal → Avonturenland
+              {t('homeStopRoute') as string}
             </p>
           </div>
         </div>
@@ -176,7 +178,7 @@ export default function Home() {
               className="font-bold mb-3 text-center"
               style={{ color: '#1E2A3A', fontSize: '18px' }}
             >
-              Vertel ons over je busrit
+              {t('homeFeedbackModalTitle') as string}
             </h2>
 
             {/* Body Text */}
@@ -184,7 +186,7 @@ export default function Home() {
               className="mb-6 text-center"
               style={{ color: '#6B7280', fontSize: '14px', lineHeight: '1.5' }}
             >
-              Help ons de shuttle-ervaring te verbeteren door je mening te delen. Het duurt maar 1 minuut!
+              {t('homeFeedbackModalBody') as string}
             </p>
 
             {/* Feedback Button */}
@@ -201,7 +203,7 @@ export default function Home() {
                 navigate('/feedback');
               }}
             >
-              Geef feedback
+              {t('homeFeedbackModalBtn') as string}
             </button>
 
             {/* Not Now Link */}
@@ -210,7 +212,7 @@ export default function Home() {
               style={{ color: '#9CA3AF', fontSize: '14px' }}
               onClick={() => setShowFeedbackModal(false)}
             >
-              Niet nu
+              {t('homeNotNow') as string}
             </button>
           </div>
         </div>

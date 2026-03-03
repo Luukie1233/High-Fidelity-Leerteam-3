@@ -2,9 +2,11 @@ import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { PhoneFrame } from '../components/PhoneFrame';
 import { TabBar } from '../components/TabBar';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function Busstatus() {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const occupancy = 52;
   const maxCapacity = 80;
@@ -33,7 +35,7 @@ export default function Busstatus() {
           className="text-xl font-bold"
           style={{ color: '#1E2A3A' }}
         >
-          Busstatus
+          {t('busStatusTitle') as string}
         </h1>
         
         {/* Empty space for alignment */}
@@ -67,7 +69,7 @@ export default function Busstatus() {
             className="font-bold mb-2"
             style={{ color: '#1E2A3A', fontSize: '18px' }}
           >
-            Richting: H5 – Dromenpark
+            {t('busDirection') as string}
           </h2>
 
           {/* LIVE Badge */}
@@ -90,24 +92,24 @@ export default function Busstatus() {
           <InfoCard
             icon="📍"
             iconBg="#FFD4D4"
-            title="Huidige locatie"
-            subtitle="Tussen H3 en H4"
+            title={t('busCurrentLocation') as string}
+            subtitle={t('busBetweenStops') as string}
           />
 
           {/* Next Stop Card */}
           <InfoCard
             icon="🚏"
             iconBg="#D1F4E0"
-            title="Volgende halte"
-            subtitle="H4 – Toekomstzone (2 min)"
+            title={t('busNextStop') as string}
+            subtitle={t('busNextStopValue') as string}
           />
 
           {/* Departure Frequency Card */}
           <InfoCard
             icon="⏱"
             iconBg="#FFF4D4"
-            title="Vertrekfrequentie"
-            subtitle="Elke 5 minuten"
+            title={t('busDepartureFreq') as string}
+            subtitle={t('busEvery5Min') as string}
           />
         </div>
 
@@ -125,7 +127,7 @@ export default function Busstatus() {
             className="font-bold mb-4"
             style={{ color: '#1E2A3A', fontSize: '16px' }}
           >
-            Bezetting (max. {maxCapacity} personen)
+            {t('busOccupancy') as string} (max. {maxCapacity} {t('busPersons') as string})
           </h3>
 
           {/* Progress Bar */}
@@ -152,7 +154,7 @@ export default function Busstatus() {
           {/* Occupancy Numbers */}
           <div className="flex items-center justify-between mb-3">
             <span style={{ color: '#6B7280', fontSize: '14px' }}>
-              {occupancy}/{maxCapacity} personen
+              {occupancy}/{maxCapacity} {t('busPersons') as string}
             </span>
             <span className="font-bold" style={{ color: '#1E2A3A', fontSize: '16px' }}>
               {occupancyPercent}%
@@ -165,7 +167,7 @@ export default function Busstatus() {
               ✓
             </span>
             <span style={{ color: '#10B981', fontSize: '14px', fontWeight: '500' }}>
-              Voldoende plek beschikbaar
+              {t('busSufficientSpace') as string}
             </span>
           </div>
         </div>

@@ -2,10 +2,12 @@ import { ArrowLeft } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router';
 import { PhoneFrame } from '../components/PhoneFrame';
 import { TabBar } from '../components/TabBar';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function NieuwsDetail() {
   const navigate = useNavigate();
   const { id } = useParams();
+  const { t } = useLanguage();
 
   const newsData: Record<string, {
     emoji: string;
@@ -18,85 +20,50 @@ export default function NieuwsDetail() {
     '1': {
       emoji: '🎢',
       iconBg: '#FFE8D4',
-      title: 'De Waterval opent deze zomer!',
-      timestamp: '3 uur geleden',
-      category: 'Nieuwe attractie',
-      content: [
-        'Lake Side Mania is trots om De Waterval aan te kondigen - onze grootste waterattractie tot nu toe!',
-        'Met een adembenemende val van 25 meter stormt je bootje naar beneden, waarbij je onderweg spectaculaire licht- en watereffecten ervaart.',
-        'De attractie opent op 15 juni en belooft de perfecte verkoeling tijdens warme zomerdagen. Geschikt voor bezoekers vanaf 1.20m lengte.',
-        'Early bird tickets zijn nu beschikbaar via de app. Boek je plek en wees een van de eersten om deze sensatie te ervaren!',
-      ],
+      title: t('news1Title') as string,
+      timestamp: t('news1Time') as string,
+      category: t('catNewAttraction') as string,
+      content: t('news1Content') as string[],
     },
     '2': {
       emoji: '🌙',
       iconBg: '#E8D4FF',
-      title: 'Avondopenstelling dit weekend',
-      timestamp: '5 uur geleden',
-      category: 'Evenement',
-      content: [
-        'Dit weekend blijft Lake Side Mania extra lang open voor een magische avondervaring!',
-        'Het park is toegankelijk tot 23:00 uur, waarbij alle attracties prachtig verlicht zijn met duizenden LED-lampjes.',
-        'Het hoogtepunt van de avond is de spectaculaire vuurwerkshow om 22:30 uur boven het meer. Met muziek en special effects wordt dit een onvergetelijk moment.',
-        'De shuttlebussen blijven doorrijden tot 23:30 uur, dus je kunt zorgeloos van deze bijzondere avond genieten.',
-        'Tickets voor de avondopenstelling kosten €15 extra bovenop je dagticket.',
-      ],
+      title: t('news2Title') as string,
+      timestamp: t('news2Time') as string,
+      category: t('catEvent') as string,
+      content: t('news2Content') as string[],
     },
     '3': {
       emoji: '🍕',
       iconBg: '#FFD4D4',
-      title: 'Nieuw restaurant: Meerterras',
-      timestamp: '1 dag geleden',
-      category: 'Horeca',
-      content: [
-        'Welkom bij Meerterras - Lake Side Mania\'s nieuwste culinaire hotspot!',
-        'Gelegen naast bushalte H3 Kruispunt, biedt dit restaurant een prachtig uitzicht op het meer terwijl je geniet van authentieke Italiaanse gerechten.',
-        'Op het menu: verse pizza\'s uit de steenoven, pasta gemaakt met liefde, en verrukkelijke tiramisu als dessert.',
-        'Het terras heeft 120 zitplaatsen en is voorzien van parasols en verwarming, waardoor je het hele seizoen comfortabel kunt dineren.',
-        'Reserveren is mogelijk via de app. Tip: vraag om een tafeltje bij het raam tijdens zonsondergang!',
-      ],
+      title: t('news3Title') as string,
+      timestamp: t('news3Time') as string,
+      category: t('catFood') as string,
+      content: t('news3Content') as string[],
     },
     '4': {
       emoji: '🚌',
       iconBg: '#D4E4FF',
-      title: 'Extra shuttlebussen ingezet',
-      timestamp: '1 dag geleden',
-      category: 'Service',
-      content: [
-        'Goed nieuws voor alle bezoekers: we hebben extra shuttlebussen ingezet!',
-        'Door de grote toestroom van gasten deze week rijden er nu bussen om de 3 minuten in plaats van om de 5 minuten.',
-        'Dit betekent kortere wachttijden bij alle haltes en meer comfort tijdens je parkbezoek.',
-        'Alle bussen zijn uitgerust met airconditioning en hebben extra ruimte voor kinderwagens en rolstoelen.',
-        'Bekijk de live buslocaties op je Plattegrond-scherm en plan je route optimaal!',
-      ],
+      title: t('news4Title') as string,
+      timestamp: t('news4Time') as string,
+      category: t('catService') as string,
+      content: t('news4Content') as string[],
     },
     '5': {
       emoji: '🎭',
       iconBg: '#FFF4D4',
-      title: 'Piratenshow om 15:00 uur',
-      timestamp: '2 dagen geleden',
-      category: 'Entertainment',
-      content: [
-        'Ahoy mateys! Captain Jack en zijn bemanning kapen vandaag Lake Side Mania!',
-        'Om precies 15:00 uur begint de spectaculaire piratenshow bij het Dromenpark (halte H5).',
-        'Verwacht epische zwaardgevechten, acrobatische stunts, en een schat aan humor. De show duurt ongeveer 30 minuten.',
-        'Na afloop kun je foto\'s maken met de piraten en krijgen alle kinderen een gratis piratenvlag.',
-        'Kom op tijd want de tribunes zitten vaak vol. De show wordt bij mooi weer ook op het water uitgevoerd!',
-      ],
+      title: t('news5Title') as string,
+      timestamp: t('news5Time') as string,
+      category: t('catEntertainment') as string,
+      content: t('news5Content') as string[],
     },
     '6': {
       emoji: '☀️',
       iconBg: '#FFEDD4',
-      title: 'Weerbericht: Perfect parkweer',
-      timestamp: '3 dagen geleden',
-      category: 'Info',
-      content: [
-        'Het weer werkt volledig mee voor een fantastische parkweek!',
-        'De komende 7 dagen verwachten we temperaturen rond de 24°C met veel zonneperiodes en af en toe een wolkje.',
-        'De kans op regen is minimaal, dus je kunt je zonnecrème inpakken en je paraplu thuislaten.',
-        'Tips voor warm weer: drink voldoende water (gratis bij alle fonteinen), draag een pet, en bezoek onze waterattracties tijdens de warmste uren.',
-        'De avondtemperatuur daalt naar een aangename 18°C - perfect voor de avondshows!',
-      ],
+      title: t('news6Title') as string,
+      timestamp: t('news6Time') as string,
+      category: t('catInfo') as string,
+      content: t('news6Content') as string[],
     },
   };
 
@@ -106,7 +73,7 @@ export default function NieuwsDetail() {
     return (
       <PhoneFrame>
         <div className="flex items-center justify-center h-full">
-          <p style={{ color: '#6B7280' }}>Nieuwsbericht niet gevonden</p>
+          <p style={{ color: '#6B7280' }}>{t('newsNotFound') as string}</p>
         </div>
       </PhoneFrame>
     );
@@ -212,7 +179,7 @@ export default function NieuwsDetail() {
               fontSize: '15px',
             }}
           >
-            📤 Delen
+            📤 {t('share') as string}
           </button>
           <button
             className="flex-1 py-3 font-bold rounded-xl flex items-center justify-center gap-2"
@@ -223,7 +190,7 @@ export default function NieuwsDetail() {
               fontSize: '15px',
             }}
           >
-            🔖 Opslaan
+            🔖 {t('save') as string}
           </button>
         </div>
       </div>

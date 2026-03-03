@@ -3,14 +3,23 @@ import { useNavigate } from 'react-router';
 import { PhoneFrame } from '../components/PhoneFrame';
 import { TabBar } from '../components/TabBar';
 import { useState } from 'react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function Feedback() {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [rating, setRating] = useState(0);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [comments, setComments] = useState('');
 
-  const tags = ['Comfortabel', 'Op tijd', 'Schoon', 'Vriendelijk', 'Snel', 'Rustig'];
+  const tags = [
+    t('feedbackTagComfortable') as string,
+    t('feedbackTagOnTime') as string,
+    t('feedbackTagClean') as string,
+    t('feedbackTagFriendly') as string,
+    t('feedbackTagFast') as string,
+    t('feedbackTagQuiet') as string,
+  ];
 
   const toggleTag = (tag: string) => {
     if (selectedTags.includes(tag)) {
@@ -43,7 +52,7 @@ export default function Feedback() {
           className="text-xl font-bold"
           style={{ color: '#1E2A3A' }}
         >
-          Feedback
+          {t('feedbackTitle') as string}
         </h1>
         
         {/* Empty space for alignment */}
@@ -66,7 +75,7 @@ export default function Feedback() {
             className="font-bold mb-4"
             style={{ color: '#1E2A3A', fontSize: '16px' }}
           >
-            Hoe tevreden ben je?
+            {t('feedbackHowSatisfied') as string}
           </h3>
 
           {/* Star Rating */}
@@ -104,7 +113,7 @@ export default function Feedback() {
             className="font-bold mb-4"
             style={{ color: '#1E2A3A', fontSize: '16px' }}
           >
-            Wat vond je goed?
+            {t('feedbackWhatGood') as string}
           </h3>
 
           {/* Tag Chips */}
@@ -143,14 +152,14 @@ export default function Feedback() {
             className="font-bold mb-4"
             style={{ color: '#1E2A3A', fontSize: '16px' }}
           >
-            Extra opmerkingen (optioneel)
+            {t('feedbackExtraComments') as string}
           </h3>
 
           {/* Text Area */}
           <textarea
             value={comments}
             onChange={(e) => setComments(e.target.value)}
-            placeholder="Vertel ons meer..."
+            placeholder={t('feedbackPlaceholder') as string}
             rows={5}
             className="w-full px-4 py-3 resize-none"
             style={{
@@ -175,11 +184,11 @@ export default function Feedback() {
           }}
           onClick={() => {
             // Handle form submission
-            alert('Bedankt voor je feedback!');
+            alert(t('feedbackThanks') as string);
             navigate('/');
           }}
         >
-          Verstuur feedback
+          {t('feedbackSubmit') as string}
         </button>
       </div>
 

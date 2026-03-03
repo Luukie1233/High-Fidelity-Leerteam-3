@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export function TabBar({ activeTab }: { activeTab: 'home' | 'kaart' | 'planner' | 'nieuws' | 'meer' }) {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   return (
     <div 
@@ -13,32 +15,32 @@ export function TabBar({ activeTab }: { activeTab: 'home' | 'kaart' | 'planner' 
       }}
     >
       <TabItem 
-        icon="🏠" 
-        label="Home" 
+        icon="🏠"
+        label={t('tabHome') as string}
         active={activeTab === 'home'}
         onClick={() => navigate('/')}
       />
       <TabItem 
-        icon="🗺️" 
-        label="Kaart" 
+        icon="🗺️"
+        label={t('tabMap') as string}
         active={activeTab === 'kaart'}
         onClick={() => navigate('/plattegrond')}
       />
       <TabItem 
-        icon="📅" 
-        label="Planner" 
+        icon="📅"
+        label={t('tabPlanner') as string}
         active={activeTab === 'planner'}
         onClick={() => navigate('/kies-attracties')}
       />
       <TabItem 
-        icon="📰" 
-        label="Nieuws" 
+        icon="📰"
+        label={t('tabNews') as string}
         active={activeTab === 'nieuws'}
         onClick={() => navigate('/nieuws')}
       />
       <TabItem 
-        icon="⚙️" 
-        label="Meer" 
+        icon="⚙️"
+        label={t('tabMore') as string}
         active={activeTab === 'meer'}
         onClick={() => navigate('/instellingen')}
       />

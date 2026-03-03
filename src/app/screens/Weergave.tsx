@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router';
 import { PhoneFrame } from '../components/PhoneFrame';
 import { TabBar } from '../components/TabBar';
 import { useState } from 'react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function Weergave() {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [textSize, setTextSize] = useState(65);
   const [lineSpacing, setLineSpacing] = useState(70);
   const [voiceAssistant, setVoiceAssistant] = useState(true);
@@ -23,7 +25,7 @@ export default function Weergave() {
         >
           <span style={{ fontSize: '14px' }}>📢</span>
           <p style={{ color: '#FFFFFF', fontSize: '12px', flex: 1 }}>
-            Spraakassistent actief — tik op tekst om voor te lezen
+            {t('voiceBanner') as string}
           </p>
         </div>
       )}
@@ -49,7 +51,7 @@ export default function Weergave() {
           className="text-xl font-bold"
           style={{ color: '#1E2A3A' }}
         >
-          Weergave
+          {t('displayTitle') as string}
         </h1>
         
         {/* Empty space for alignment */}
@@ -70,7 +72,7 @@ export default function Weergave() {
             }}
           >
             <h3 className="font-bold mb-4" style={{ color: '#1E2A3A', fontSize: '15px' }}>
-              Tekstgrootte
+              {t('textSize') as string}
             </h3>
             <div className="flex items-center gap-4">
               {/* Small A */}
@@ -110,7 +112,7 @@ export default function Weergave() {
             }}
           >
             <h3 className="font-bold mb-4" style={{ color: '#1E2A3A', fontSize: '15px' }}>
-              Regelafstand
+              {t('lineSpacing') as string}
             </h3>
             <div className="flex items-center gap-4">
               {/* Compact lines icon */}
@@ -159,10 +161,10 @@ export default function Weergave() {
           >
             <div>
               <h3 className="font-bold mb-0.5" style={{ color: '#1E2A3A', fontSize: '15px' }}>
-                Spraakassistent
+                {t('voiceAssistant') as string}
               </h3>
               <p style={{ color: '#6B7280', fontSize: '13px' }}>
-                Tekst voorlezen
+                {t('readAloud') as string}
               </p>
             </div>
             
@@ -202,7 +204,7 @@ export default function Weergave() {
             }}
           >
             <h3 className="font-bold mb-3" style={{ color: '#1E2A3A', fontSize: '15px' }}>
-              Voorbeeld
+              {t('preview') as string}
             </h3>
             <p 
               style={{ 
@@ -211,7 +213,7 @@ export default function Weergave() {
                 lineHeight: `${1.4 + (lineSpacing / 100) * 0.6}`
               }}
             >
-              Dit is voorbeeldtekst om de leesbaarheid van je instellingen te controleren. De shuttlebus vertrekt om de 5 minuten naar alle attracties.
+              {t('previewText') as string}
             </p>
           </div>
         </div>

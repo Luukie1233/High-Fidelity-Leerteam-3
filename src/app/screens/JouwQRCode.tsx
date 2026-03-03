@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router';
 import { QRCodeSVG } from 'qrcode.react';
 import { PhoneFrame } from '../components/PhoneFrame';
 import { TabBar } from '../components/TabBar';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function JouwQRCode() {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const handleShare = () => {
     // Share functionality
@@ -40,7 +42,7 @@ export default function JouwQRCode() {
           className="text-xl font-bold"
           style={{ color: '#1E2A3A' }}
         >
-          Jouw QR-code
+          {t('yourQRCode') as string}
         </h1>
         
         {/* Empty space for alignment */}
@@ -50,7 +52,7 @@ export default function JouwQRCode() {
       {/* Subtitle */}
       <div className="px-6 pt-4 pb-6 text-center">
         <p style={{ color: '#6B7280', fontSize: '15px' }}>
-          Scan deze code bij elke halte
+          {t('scanAtEveryStop') as string}
         </p>
       </div>
 
@@ -141,10 +143,10 @@ export default function JouwQRCode() {
             className="font-bold mb-1"
             style={{ color: '#1E2A3A', fontSize: '18px' }}
           >
-            Gezin Van Dijk
+            {t('familyName') as string}
           </h2>
           <p style={{ color: '#6B7280', fontSize: '14px' }}>
-            4 personen · 1 QR-code
+            {t('personsQR') as string}
           </p>
         </div>
 
@@ -162,7 +164,7 @@ export default function JouwQRCode() {
             className="font-bold mb-3"
             style={{ color: '#1E2A3A', fontSize: '16px' }}
           >
-            Samenvatting
+            {t('summary') as string}
           </h3>
 
           {/* Attractions */}
@@ -171,7 +173,7 @@ export default function JouwQRCode() {
               className="font-semibold mb-1"
               style={{ color: '#1E2A3A', fontSize: '14px' }}
             >
-              Geselecteerde attracties:
+              {t('selectedAttractions') as string}
             </p>
             <p style={{ color: '#6B7280', fontSize: '14px' }}>
               • De Tornado
@@ -184,10 +186,10 @@ export default function JouwQRCode() {
               className="font-semibold mb-1"
               style={{ color: '#1E2A3A', fontSize: '14px' }}
             >
-              Busfaciliteit:
+              {t('busFacility') as string}
             </p>
             <p style={{ color: '#6B7280', fontSize: '14px' }}>
-              Geen speciale faciliteit
+              {t('noSpecialFacility') as string}
             </p>
           </div>
         </div>
@@ -207,7 +209,7 @@ export default function JouwQRCode() {
           }}
           onClick={() => navigate('/busfaciliteiten')}
         >
-          Wijzig
+          {t('modify') as string}
         </button>
 
         {/* Deel QR Button */}
@@ -222,7 +224,7 @@ export default function JouwQRCode() {
           onClick={handleShare}
         >
           <Share2 size={18} />
-          Deel QR
+          {t('shareQR') as string}
         </button>
       </div>
 
