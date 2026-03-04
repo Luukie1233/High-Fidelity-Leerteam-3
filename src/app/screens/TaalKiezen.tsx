@@ -65,6 +65,22 @@ export default function TaalKiezen() {
             isSelected={language === 'de'}
             onClick={() => setLanguage('de')}
           />
+
+          {/* Turkish Option */}
+          <LanguageOption
+            flag="🇹🇷"
+            language="Türkçe"
+            isSelected={language === 'tr'}
+            onClick={() => setLanguage('tr')}
+          />
+
+          {/* Arabic Option */}
+          <LanguageOption
+            flag="🇸🇦"
+            language="العربية"
+            isSelected={language === 'ar'}
+            onClick={() => setLanguage('ar')}
+          />
         </div>
       </div>
 

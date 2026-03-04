@@ -1,4 +1,4 @@
-export type Language = 'nl' | 'en' | 'de';
+export type Language = 'nl' | 'en' | 'de' | 'tr' | 'ar';
 
 export const translations = {
   // TabBar
@@ -28,7 +28,7 @@ export const translations = {
   // Instellingen
   settingsTitle: { nl: 'Instellingen', en: 'Settings', de: 'Einstellungen' },
   settingsLanguage: { nl: 'Taal', en: 'Language', de: 'Sprache' },
-  settingsLanguageSub: { nl: 'Nederlands', en: 'English', de: 'Deutsch' },
+  settingsLanguageSub: { nl: 'Nederlands', en: 'English', de: 'Deutsch', tr: 'Türkçe', ar: 'العربية' },
   settingsDisplay: { nl: 'Weergave', en: 'Display', de: 'Anzeige' },
   settingsDisplaySub: { nl: 'Tekstgrootte & meer', en: 'Text size & more', de: 'Textgröße & mehr' },
   settingsVoice: { nl: 'Spraakassistent', en: 'Voice assistant', de: 'Sprachassistent' },
@@ -36,10 +36,12 @@ export const translations = {
   settingsAbout: { nl: 'Over Lake Side Mania', en: 'About Lake Side Mania', de: 'Über Lake Side Mania' },
 
   // TaalKiezen
-  chooseLanguageTitle: { nl: 'Taal kiezen', en: 'Choose language', de: 'Sprache wählen' },
-  langDutch: { nl: 'Nederlands', en: 'Dutch', de: 'Niederländisch' },
-  langEnglish: { nl: 'Engels', en: 'English', de: 'Englisch' },
-  langGerman: { nl: 'Duits', en: 'German', de: 'Deutsch' },
+  chooseLanguageTitle: { nl: 'Taal kiezen', en: 'Choose language', de: 'Sprache wählen', tr: 'Dil seçin', ar: 'اختر اللغة' },
+  langDutch: { nl: 'Nederlands', en: 'Dutch', de: 'Niederländisch', tr: 'Hollandaca', ar: 'الهولندية' },
+  langEnglish: { nl: 'Engels', en: 'English', de: 'Englisch', tr: 'İngilizce', ar: 'الإنجليزية' },
+  langGerman: { nl: 'Duits', en: 'German', de: 'Deutsch', tr: 'Almanca', ar: 'الألمانية' },
+  langTurkish: { nl: 'Turks', en: 'Turkish', de: 'Türkisch', tr: 'Türkçe', ar: 'التركية' },
+  langArabic: { nl: 'Arabisch', en: 'Arabic', de: 'Arabisch', tr: 'Arapça', ar: 'العربية' },
 
   // KiesAttracties
   chooseAttractions: { nl: 'Kies Attracties', en: 'Choose Attractions', de: 'Attraktionen wählen' },

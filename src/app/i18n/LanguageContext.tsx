@@ -13,8 +13,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>('nl');
 
   const t = (key: TranslationKey): string | string[] => {
-    const entry = translations[key];
-    return entry[language] as string | string[];
+    const entry = translations[key] as Record<string, string | string[]>;
+    return (entry[language] ?? entry['en']) as string | string[];
   };
 
   return (
