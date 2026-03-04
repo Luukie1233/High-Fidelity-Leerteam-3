@@ -13,6 +13,8 @@ import Feedback from "./screens/Feedback";
 import Instellingen from "./screens/Instellingen";
 import TaalKiezen from "./screens/TaalKiezen";
 import Weergave from "./screens/Weergave";
+import SavedQRCodes from "./screens/SavedQRCodes";
+import SavedQRCodeDetail from "./screens/SavedQRCodeDetail";
 
 export const router = createBrowserRouter([
   {
@@ -70,5 +72,13 @@ export const router = createBrowserRouter([
   {
     path: "/weergave",
     Component: Weergave,
+  },
+  {
+    path: "/saved-qr-codes",
+    Component: SavedQRCodes,
+  },
+  {
+    path: "/saved-qr-code/:id",
+    Component: SavedQRCodeDetail,
   },
 ]);

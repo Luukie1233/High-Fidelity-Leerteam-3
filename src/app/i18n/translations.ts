@@ -137,6 +137,18 @@ export const translations = {
   modify: { nl: 'Wijzig', en: 'Modify', de: 'Ändern' },
   shareQR: { nl: 'Deel QR', en: 'Share QR', de: 'QR teilen' },
 
+  // Saved QR Codes
+  savedQRCodes: { nl: 'Opgeslagen QR-codes', en: 'Saved QR Codes', de: 'Gespeicherte QR-Codes' },
+  savedQRCodesSub: { nl: 'Bekijk je opgeslagen codes', en: 'View your saved codes', de: 'Sieh dir deine gespeicherten Codes an' },
+  saveQRCode: { nl: 'QR-code opslaan', en: 'Save QR code', de: 'QR-Code speichern' },
+  qrCodeSaved: { nl: 'QR-code opgeslagen!', en: 'QR code saved!', de: 'QR-Code gespeichert!' },
+  maxQRCodesReached: { nl: 'Maximum van 3 QR-codes bereikt. Verwijder er eerst een.', en: 'Maximum of 3 QR codes reached. Delete one first.', de: 'Maximum von 3 QR-Codes erreicht. Lösche zuerst einen.' },
+  noSavedQRCodes: { nl: 'Geen opgeslagen QR-codes', en: 'No saved QR codes', de: 'Keine gespeicherten QR-Codes' },
+  noSavedQRCodesSub: { nl: 'Genereer een QR-code via de planner en sla hem op.', en: 'Generate a QR code via the planner and save it.', de: 'Generiere einen QR-Code über den Planer und speichere ihn.' },
+  deleteQRCode: { nl: 'Verwijderen', en: 'Delete', de: 'Löschen' },
+  attractions: { nl: 'attracties', en: 'attractions', de: 'Attraktionen' },
+  savedOn: { nl: 'Opgeslagen op', en: 'Saved on', de: 'Gespeichert am' },
+
   // Weergave
   displayTitle: { nl: 'Weergave', en: 'Display', de: 'Anzeige' },
   textSize: { nl: 'Tekstgrootte', en: 'Text size', de: 'Textgröße' },

@@ -1,10 +1,12 @@
-import { ArrowLeft, Share2 } from 'lucide-react';
+import { useState } from 'react';
+import { ArrowLeft, Share2, Bookmark } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { QRCodeSVG } from 'qrcode.react';
 import { PhoneFrame } from '../components/PhoneFrame';
 import { TabBar } from '../components/TabBar';
 import { useLanguage } from '../i18n/LanguageContext';
 import { usePlanner } from '../planner/PlannerContext';
+import { useSavedQRCodes } from '../planner/SavedQRCodesContext';
 import type { TranslationKey } from '../i18n/translations';
 
 const attractionKeys: Record<number, TranslationKey> = {
@@ -27,15 +29,29 @@ export default function JouwQRCode() {
   const navigate = useNavigate();
   const { t } = useLanguage();
   const { selectedAttractions, selectedFacilities, groupSize } = usePlanner();
+  const { saveQRCode } = useSavedQRCodes();
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  const qrValue = `LakeSideMania-VanDijk-${groupSize}personen-20260303`;
 
   const handleShare = () => {
-    // Share functionality
     if (navigator.share) {
       navigator.share({
         title: 'Lake Side Mania QR-code',
         text: 'Gezin Van Dijk - Lake Side Mania toegangscode',
       });
     }
+  };
+
+  const handleSave = () => {
+    const success = saveQRCode({
+      attractions: [...selectedAttractions],
+      facilities: Array.from(selectedFacilities),
+      groupSize,
+      qrValue,
+    });
+    setToastMessage(success ? t('qrCodeSaved') as string : t('maxQRCodesReached') as string);
+    setTimeout(() => setToastMessage(null), 3000);
   };
 
   return (
@@ -75,8 +91,24 @@ export default function JouwQRCode() {
         </p>
       </div>
 
+      {/* Toast */}
+      {toastMessage && (
+        <div
+          className="absolute left-6 right-6 text-center py-3 px-4 font-semibold z-10"
+          style={{
+            top: '140px',
+            backgroundColor: '#2C3E50',
+            color: '#FFFFFF',
+            borderRadius: '12px',
+            fontSize: '14px',
+          }}
+        >
+          {toastMessage}
+        </div>
+      )}
+
       {/* Content Area with Scrollable List */}
-      <div className="flex-1 px-6 pb-6 overflow-y-auto" style={{ height: 'calc(844px - 80px - 64px - 100px - 80px)' }}>
+      <div className="flex-1 px-6 pb-6 overflow-y-auto" style={{ height: 'calc(844px - 80px - 64px - 156px - 80px)' }}>
         {/* QR Code Card with Corner Brackets */}
         <div 
           className="relative p-8 flex flex-col items-center mb-6"
@@ -92,7 +124,7 @@ export default function JouwQRCode() {
             {/* QR Code */}
             <div className="p-4 bg-white">
               <QRCodeSVG
-                value={`LakeSideMania-VanDijk-${groupSize}personen-20260303`}
+                value={qrValue}
                 size={200}
                 level="H"
                 includeMargin={false}
@@ -244,35 +276,52 @@ export default function JouwQRCode() {
       </div>
 
       {/* Bottom Buttons Area */}
-      <div className="px-6 py-5 flex gap-3" style={{ height: '100px' }}>
-        {/* Wijzig Button */}
-        <button
-          className="flex-1 py-4 font-bold rounded-xl"
-          style={{
-            backgroundColor: '#FFFFFF',
-            color: '#2C3E50',
-            fontSize: '16px',
-            borderRadius: '12px',
-            border: '1px solid #C0C0CC',
-          }}
-          onClick={() => navigate('/busfaciliteiten')}
-        >
-          {t('modify') as string}
-        </button>
+      <div className="px-6 py-4 space-y-2" style={{ height: '156px' }}>
+        <div className="flex gap-3">
+          {/* Wijzig Button */}
+          <button
+            className="flex-1 py-3 font-bold rounded-xl"
+            style={{
+              backgroundColor: '#FFFFFF',
+              color: '#2C3E50',
+              fontSize: '15px',
+              borderRadius: '12px',
+              border: '1px solid #C0C0CC',
+            }}
+            onClick={() => navigate('/busfaciliteiten')}
+          >
+            {t('modify') as string}
+          </button>
 
-        {/* Deel QR Button */}
+          {/* Deel QR Button */}
+          <button
+            className="flex-1 py-3 font-bold rounded-xl flex items-center justify-center gap-2"
+            style={{
+              backgroundColor: '#F0B8B0',
+              color: '#2C3E50',
+              fontSize: '15px',
+              borderRadius: '12px',
+            }}
+            onClick={handleShare}
+          >
+            <Share2 size={16} />
+            {t('shareQR') as string}
+          </button>
+        </div>
+
+        {/* Save QR Button */}
         <button
-          className="flex-1 py-4 font-bold rounded-xl flex items-center justify-center gap-2"
+          className="w-full py-3 font-bold rounded-xl flex items-center justify-center gap-2"
           style={{
-            backgroundColor: '#F0B8B0',
-            color: '#2C3E50',
-            fontSize: '16px',
+            backgroundColor: '#2C3E50',
+            color: '#FFFFFF',
+            fontSize: '15px',
             borderRadius: '12px',
           }}
-          onClick={handleShare}
+          onClick={handleSave}
         >
-          <Share2 size={18} />
-          {t('shareQR') as string}
+          <Bookmark size={16} />
+          {t('saveQRCode') as string}
         </button>
       </div>
 
