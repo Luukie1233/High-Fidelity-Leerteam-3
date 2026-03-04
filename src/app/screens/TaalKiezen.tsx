@@ -45,7 +45,7 @@ export default function TaalKiezen() {
           {/* Dutch Option */}
           <LanguageOption
             flag="🇳🇱"
-            language={t('langDutch') as string}
+            language="Nederlands"
             isSelected={language === 'nl'}
             onClick={() => setLanguage('nl')}
           />
@@ -53,9 +53,17 @@ export default function TaalKiezen() {
           {/* English Option */}
           <LanguageOption
             flag="🇬🇧"
-            language={t('langEnglish') as string}
+            language="English"
             isSelected={language === 'en'}
             onClick={() => setLanguage('en')}
+          />
+
+          {/* German Option */}
+          <LanguageOption
+            flag="🇩🇪"
+            language="Deutsch"
+            isSelected={language === 'de'}
+            onClick={() => setLanguage('de')}
           />
         </div>
       </div>
