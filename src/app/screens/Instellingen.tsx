@@ -50,14 +50,6 @@ export default function Instellingen() {
             onClick={() => navigate('/weergave')}
           />
 
-          {/* Voice Assistant Setting */}
-          <SettingCard
-            icon="🔊"
-            iconBg="#E8E8E8"
-            title={t('settingsVoice') as string}
-            subtitle={t('settingsVoiceOff') as string}
-          />
-
           {/* About Setting */}
           <SettingCard
             icon="ℹ"

@@ -61,7 +61,7 @@ export default function TaalKiezen() {
       </div>
 
       {/* Bottom Tab Bar */}
-      <TabBar activeTab="planner" />
+      <TabBar activeTab="meer" />
     </PhoneFrame>
   );
 }

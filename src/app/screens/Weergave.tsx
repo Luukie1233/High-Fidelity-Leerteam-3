@@ -221,7 +221,7 @@ export default function Weergave() {
       </div>
 
       {/* Bottom Tab Bar */}
-      <TabBar activeTab="planner" />
+      <TabBar activeTab="meer" />
     </PhoneFrame>
   );
 }
