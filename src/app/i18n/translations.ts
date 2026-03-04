@@ -47,6 +47,7 @@ export const translations = {
   attractionsSelected: { nl: 'attracties geselecteerd', en: 'attractions selected', de: 'Attraktionen ausgewählt' },
   selectAttractions: { nl: 'Selecteer attracties', en: 'Select attractions', de: 'Attraktionen auswählen' },
   further: { nl: 'Verder', en: 'Continue', de: 'Weiter' },
+  moreInfo: { nl: 'Meer informatie', en: 'More info', de: 'Mehr Infos' },
 
   // Nieuws
   newsTitle: { nl: 'Nieuws & Updates', en: 'News & Updates', de: 'Neuigkeiten & Updates' },

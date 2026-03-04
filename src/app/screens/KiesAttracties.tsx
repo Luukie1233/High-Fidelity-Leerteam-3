@@ -105,6 +105,7 @@ export default function KiesAttracties() {
               slug={attraction.slug}
               checked={selectedAttractions.includes(attraction.id)}
               onToggle={() => toggleAttraction(attraction.id)}
+              moreInfoLabel={t('moreInfo') as string}
             />
           ))}
         </div>
@@ -136,46 +137,43 @@ export default function KiesAttracties() {
 }
 
 // Attraction Card Component
-function AttractionCard({ 
-  name, 
-  duration, 
+function AttractionCard({
+  name,
+  duration,
   zone,
   slug,
   checked,
-  onToggle 
-}: { 
-  name: string; 
-  duration: string; 
+  onToggle,
+  moreInfoLabel,
+}: {
+  name: string;
+  duration: string;
   zone: string;
   slug: string;
   checked: boolean;
   onToggle: () => void;
+  moreInfoLabel: string;
 }) {
   const navigate = useNavigate();
 
-  const handleCardClick = (e: React.MouseEvent) => {
-    // Navigate to detail page
+  const handleMoreInfo = (e: React.MouseEvent) => {
+    e.stopPropagation();
     navigate(`/attractie/${slug}`);
   };
 
-  const handleCheckboxClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    onToggle();
-  };
-
   return (
-    <button 
+    <button
       className="w-full p-4 flex items-center gap-3 text-left"
       style={{
         backgroundColor: '#FFFFFF',
-        border: '1px solid #E0E0E8',
+        border: checked ? '2px solid #2C3E50' : '1px solid #E0E0E8',
         borderRadius: '12px',
         boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)',
       }}
-      onClick={handleCardClick}
+      onClick={onToggle}
     >
       {/* Icon */}
-      <div 
+      <div
         className="flex items-center justify-center flex-shrink-0"
         style={{
           width: '44px',
@@ -187,7 +185,7 @@ function AttractionCard({
       >
         🎢
       </div>
-      
+
       {/* Text */}
       <div className="flex-1">
         <h3 className="font-bold mb-0.5" style={{ color: '#1E2A3A', fontSize: '15px' }}>
@@ -196,44 +194,43 @@ function AttractionCard({
         <p style={{ color: '#6B7280', fontSize: '13px' }}>
           {duration} · {zone}
         </p>
+        <span
+          role="button"
+          tabIndex={0}
+          onClick={handleMoreInfo}
+          onKeyDown={(e) => { if (e.key === 'Enter') handleMoreInfo(e as unknown as React.MouseEvent); }}
+          style={{ color: '#9CA3AF', fontSize: '12px', textDecoration: 'underline', cursor: 'pointer' }}
+        >
+          {moreInfoLabel}
+        </span>
       </div>
-      
-      {/* Checkbox - Much larger hit area */}
-      <button
-        onClick={handleCheckboxClick}
+
+      {/* Checkbox */}
+      <div
         className="flex items-center justify-center flex-shrink-0"
         style={{
-          width: '56px',
-          height: '56px',
-          padding: '16px',
-          marginRight: '-12px',
+          width: '24px',
+          height: '24px',
+          border: checked ? '2px solid #2C3E50' : '2px solid #C0C0CC',
+          borderRadius: '6px',
+          backgroundColor: checked ? '#2C3E50' : 'transparent',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
-        <div 
-          style={{
-            width: '24px',
-            height: '24px',
-            border: checked ? '2px solid #2C3E50' : '2px solid #C0C0CC',
-            borderRadius: '6px',
-            backgroundColor: checked ? '#2C3E50' : 'transparent',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          {checked && (
-            <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
-              <path 
-                d="M1 5L5 9L13 1" 
-                stroke="#FFFFFF" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              />
-            </svg>
-          )}
-        </div>
-      </button>
+        {checked && (
+          <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+            <path
+              d="M1 5L5 9L13 1"
+              stroke="#FFFFFF"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        )}
+      </div>
     </button>
   );
 }
