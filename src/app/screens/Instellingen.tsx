@@ -50,15 +50,6 @@ export default function Instellingen() {
             onClick={() => navigate('/weergave')}
           />
 
-          {/* Saved QR Codes */}
-          <SettingCard
-            icon="📱"
-            iconBg="#E8E8E8"
-            title={t('savedQRCodes') as string}
-            subtitle={t('savedQRCodesSub') as string}
-            onClick={() => navigate('/saved-qr-codes')}
-          />
-
           {/* About Setting */}
           <SettingCard
             icon="ℹ"
