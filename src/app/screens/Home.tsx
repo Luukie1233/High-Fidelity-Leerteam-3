@@ -25,18 +25,16 @@ export default function Home() {
         }}
       >
         {/* Bus Emoji Icon */}
-        <div 
-          className="flex items-center justify-center mb-3"
+        <img
+          src="/lake-side-mania-icon.svg"
+          alt="Lake Side Mania"
+          className="mb-3"
           style={{
             width: '56px',
             height: '56px',
-            backgroundColor: 'rgba(255, 255, 255, 0.9)',
             borderRadius: '12px',
-            fontSize: '32px',
           }}
-        >
-          🚌
-        </div>
+        />
         
         {/* Title */}
         <h1 
