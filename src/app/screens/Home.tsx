@@ -1,17 +1,16 @@
 import { ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router';
-import { QRCodeSVG } from 'qrcode.react';
 import { PhoneFrame } from '../components/PhoneFrame';
 import { TabBar } from '../components/TabBar';
 import { useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
-import { useSavedQRCodes } from '../planner/SavedQRCodesContext';
+import { useVoiceAssistant } from '../planner/VoiceAssistantContext';
 
 export default function Home() {
   const navigate = useNavigate();
   const [showFeedbackModal, setShowFeedbackModal] = useState(false);
   const { t } = useLanguage();
-  const { savedQRCodes } = useSavedQRCodes();
+  const { voiceAssistant, toggleVoiceAssistant } = useVoiceAssistant();
 
   return (
     <PhoneFrame>
@@ -51,6 +50,29 @@ export default function Home() {
         <p style={{ color: '#6B7280', fontSize: '14px' }}>
           {t('homeSubtitle') as string}
         </p>
+
+        {/* Voice Assistant Toggle */}
+        <button
+          onClick={toggleVoiceAssistant}
+          style={{
+            position: 'absolute',
+            top: '12px',
+            right: '16px',
+            background: 'rgba(255,255,255,0.85)',
+            borderRadius: '8px',
+            padding: '4px 8px',
+            border: '1px solid rgba(0,0,0,0.08)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px',
+            fontSize: '14px',
+          }}
+        >
+          {voiceAssistant ? '🔊' : '🔇'}
+          <span style={{ fontSize: '10px', color: '#1E2A3A', fontWeight: 600 }}>
+            {voiceAssistant ? 'AAN' : 'UIT'}
+          </span>
+        </button>
       </div>
 
       {/* Content Area */}
@@ -90,53 +112,6 @@ export default function Home() {
           subtitle={t('homeFeedbackSub') as string}
           onClick={() => setShowFeedbackModal(true)}
         />
-
-        {/* Saved QR Codes - only shown when there are saved codes */}
-        {savedQRCodes.length > 0 && (
-          <div className="mt-3">
-            <h2 className="font-bold mb-2" style={{ color: '#1E2A3A', fontSize: '16px' }}>
-              {t('savedQRCodes') as string}
-            </h2>
-            <div className="space-y-2">
-              {savedQRCodes.map((qr) => (
-                <button
-                  key={qr.id}
-                  className="w-full p-3 flex items-center gap-3 text-left"
-                  style={{
-                    backgroundColor: '#FFFFFF',
-                    border: '1px solid #E0E0E8',
-                    borderRadius: '12px',
-                    boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)',
-                  }}
-                  onClick={() => navigate(`/saved-qr-code/${qr.id}`)}
-                >
-                  <div
-                    className="flex items-center justify-center flex-shrink-0"
-                    style={{
-                      width: '40px',
-                      height: '40px',
-                      backgroundColor: '#FFFFFF',
-                      borderRadius: '8px',
-                      border: '1px solid #E0E0E8',
-                      padding: '3px',
-                    }}
-                  >
-                    <QRCodeSVG value={qr.qrValue} size={34} level="L" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-bold" style={{ color: '#1E2A3A', fontSize: '14px' }}>
-                      {qr.label}
-                    </h3>
-                    <p style={{ color: '#6B7280', fontSize: '12px' }}>
-                      {qr.attractions.length} {t('attractions') as string} · {qr.groupSize} {t('persons') as string}
-                    </p>
-                  </div>
-                  <ChevronRight size={18} style={{ color: '#C0C0CC' }} />
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
 
         {/* Live Shuttle Info Card */}
         <div 

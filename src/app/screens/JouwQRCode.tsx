@@ -1,12 +1,10 @@
-import { useState } from 'react';
-import { ArrowLeft, Share2, Bookmark } from 'lucide-react';
+import { ArrowLeft, Share2 } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { QRCodeSVG } from 'qrcode.react';
 import { PhoneFrame } from '../components/PhoneFrame';
 import { TabBar } from '../components/TabBar';
 import { useLanguage } from '../i18n/LanguageContext';
 import { usePlanner } from '../planner/PlannerContext';
-import { useSavedQRCodes } from '../planner/SavedQRCodesContext';
 import type { TranslationKey } from '../i18n/translations';
 
 const attractionKeys: Record<number, TranslationKey> = {
@@ -29,29 +27,16 @@ export default function JouwQRCode() {
   const navigate = useNavigate();
   const { t } = useLanguage();
   const { selectedAttractions, selectedFacilities, groupSize } = usePlanner();
-  const { saveQRCode } = useSavedQRCodes();
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  const qrValue = `LakeSideMania-VanDijk-${groupSize}personen-20260303`;
+  const qrValue = `LakeSideMania-${groupSize}personen-20260303`;
 
   const handleShare = () => {
     if (navigator.share) {
       navigator.share({
         title: 'Lake Side Mania QR-code',
-        text: 'Gezin Van Dijk - Lake Side Mania toegangscode',
+        text: 'Lake Side Mania toegangscode',
       });
     }
-  };
-
-  const handleSave = () => {
-    const success = saveQRCode({
-      attractions: [...selectedAttractions],
-      facilities: Array.from(selectedFacilities),
-      groupSize,
-      qrValue,
-    });
-    setToastMessage(success ? t('qrCodeSaved') as string : t('maxQRCodesReached') as string);
-    setTimeout(() => setToastMessage(null), 3000);
   };
 
   return (
@@ -60,7 +45,7 @@ export default function JouwQRCode() {
       <div 
         className="relative px-6 py-4 flex items-center justify-between"
         style={{
-          height: '80px',
+          height: '88px',
           background: 'linear-gradient(to bottom, #A8D4F0, #C8E4F8)',
         }}
       >
@@ -73,12 +58,12 @@ export default function JouwQRCode() {
         </button>
 
         {/* Title */}
-        <h1 
-          className="text-xl font-bold"
-          style={{ color: '#1E2A3A' }}
-        >
-          {t('yourQRCode') as string}
-        </h1>
+        <div style={{ textAlign: 'center' }}>
+          <h1 className="text-xl font-bold" style={{ color: '#1E2A3A', marginBottom: '2px' }}>
+            {t('yourQRCode') as string}
+          </h1>
+          <p style={{ color: '#6B7280', fontSize: '11px' }}>Lake Side Mania</p>
+        </div>
         
         {/* Empty space for alignment */}
         <div style={{ width: '40px' }} />
@@ -91,24 +76,8 @@ export default function JouwQRCode() {
         </p>
       </div>
 
-      {/* Toast */}
-      {toastMessage && (
-        <div
-          className="absolute left-6 right-6 text-center py-3 px-4 font-semibold z-10"
-          style={{
-            top: '140px',
-            backgroundColor: '#2C3E50',
-            color: '#FFFFFF',
-            borderRadius: '12px',
-            fontSize: '14px',
-          }}
-        >
-          {toastMessage}
-        </div>
-      )}
-
       {/* Content Area with Scrollable List */}
-      <div className="flex-1 px-6 pb-6 overflow-y-auto" style={{ height: 'calc(844px - 80px - 64px - 156px - 80px)' }}>
+      <div className="flex-1 px-6 pb-6 overflow-y-auto" style={{ height: 'calc(844px - 88px - 64px - 156px - 80px)' }}>
         {/* QR Code Card with Corner Brackets */}
         <div 
           className="relative p-8 flex flex-col items-center mb-6"
@@ -309,20 +278,6 @@ export default function JouwQRCode() {
           </button>
         </div>
 
-        {/* Save QR Button */}
-        <button
-          className="w-full py-3 font-bold rounded-xl flex items-center justify-center gap-2"
-          style={{
-            backgroundColor: '#2C3E50',
-            color: '#FFFFFF',
-            fontSize: '15px',
-            borderRadius: '12px',
-          }}
-          onClick={handleSave}
-        >
-          <Bookmark size={16} />
-          {t('saveQRCode') as string}
-        </button>
       </div>
 
       {/* Bottom Tab Bar */}

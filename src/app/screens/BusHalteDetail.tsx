@@ -157,12 +157,12 @@ export default function BusHalteDetail() {
       <div 
         className="relative px-6 py-4 flex items-center"
         style={{
-          height: '80px',
+          height: '88px',
           background: 'linear-gradient(to bottom, #A8D4F0, #C8E4F8)',
         }}
       >
         {/* Back Button */}
-        <button 
+        <button
           onClick={() => navigate('/plattegrond')}
           className="p-2 -ml-2"
         >
@@ -170,16 +170,16 @@ export default function BusHalteDetail() {
         </button>
 
         {/* Title */}
-        <h1 
-          className="flex-1 text-center font-bold mr-10"
-          style={{ color: '#1E2A3A', fontSize: '18px' }}
-        >
-          {t('stopDetails') as string}
-        </h1>
+        <div className="flex-1 text-center mr-10">
+          <h1 className="font-bold" style={{ color: '#1E2A3A', fontSize: '18px', marginBottom: '2px' }}>
+            {t('stopDetails') as string}
+          </h1>
+          <p style={{ color: '#6B7280', fontSize: '11px' }}>Lake Side Mania</p>
+        </div>
       </div>
 
       {/* Content Area */}
-      <div className="flex-1 px-6 py-6 overflow-y-auto" style={{ height: 'calc(844px - 80px - 80px)' }}>
+      <div className="flex-1 px-6 py-6 overflow-y-auto" style={{ height: 'calc(844px - 88px - 80px)' }}>
         {/* Halte Header */}
         <div className="flex items-center gap-4 mb-5">
           <div 

@@ -14,21 +14,21 @@ export default function Instellingen() {
       <div 
         className="relative px-6 py-4 flex items-center justify-center"
         style={{
-          height: '80px',
+          height: '88px',
           background: 'linear-gradient(to bottom, #A8D4F0, #C8E4F8)',
         }}
       >
         {/* Title */}
-        <h1 
-          className="text-xl font-bold"
-          style={{ color: '#1E2A3A' }}
-        >
-          {t('settingsTitle') as string}
-        </h1>
+        <div style={{ textAlign: 'center' }}>
+          <h1 className="text-xl font-bold" style={{ color: '#1E2A3A', marginBottom: '2px' }}>
+            {t('settingsTitle') as string}
+          </h1>
+          <p style={{ color: '#6B7280', fontSize: '11px' }}>Lake Side Mania</p>
+        </div>
       </div>
 
       {/* Content Area */}
-      <div className="flex-1 px-6 py-6 overflow-y-auto" style={{ height: 'calc(844px - 80px - 80px)' }}>
+      <div className="flex-1 px-6 py-6 overflow-y-auto" style={{ height: 'calc(844px - 88px - 80px)' }}>
         {/* Settings Cards */}
         <div className="space-y-3">
           {/* Language Setting */}

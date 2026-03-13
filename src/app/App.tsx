@@ -3,6 +3,7 @@ import { router } from "./routes";
 import { LanguageProvider } from "./i18n/LanguageContext";
 import { PlannerProvider } from "./planner/PlannerContext";
 import { SavedQRCodesProvider } from "./planner/SavedQRCodesContext";
+import { VoiceAssistantProvider } from "./planner/VoiceAssistantContext";
 import "../styles/sliders.css";
 
 function App() {
@@ -10,7 +11,9 @@ function App() {
     <LanguageProvider>
       <PlannerProvider>
         <SavedQRCodesProvider>
-          <RouterProvider router={router} />
+          <VoiceAssistantProvider>
+            <RouterProvider router={router} />
+          </VoiceAssistantProvider>
         </SavedQRCodesProvider>
       </PlannerProvider>
     </LanguageProvider>

@@ -1,0 +1,118 @@
+<h2>Waar op het Home scherm komt de spraakassistent?</h2>
+<p class="subtitle">Kies hoe je de spraakassistent wil bereiken vanaf het Home scherm</p>
+
+<div class="cards">
+
+  <!-- Option A: As a card -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f8fafc;padding:12px;">
+      <!-- Mini phone mockup for Option A -->
+      <div style="background:#fff;border-radius:12px;overflow:hidden;border:1.5px solid #e0e0e8;max-width:180px;margin:0 auto;font-size:11px;">
+        <!-- Header -->
+        <div style="background:linear-gradient(to bottom,#A8D4F0,#C8E4F8);padding:10px;text-align:center;">
+          <div style="font-size:18px;">🚌</div>
+          <div style="font-weight:700;color:#1E2A3A;font-size:13px;">Lake Side Mania</div>
+        </div>
+        <!-- Cards -->
+        <div style="padding:8px;display:flex;flex-direction:column;gap:5px;">
+          <div style="background:#fff;border:1px solid #e0e0e8;border-radius:8px;padding:6px 8px;display:flex;align-items:center;gap:6px;">
+            <span style="background:#D1F4E0;border-radius:6px;padding:4px;font-size:12px;">📅</span>
+            <span style="color:#1E2A3A;font-weight:600;">Start Planner</span>
+          </div>
+          <div style="background:#fff;border:1px solid #e0e0e8;border-radius:8px;padding:6px 8px;display:flex;align-items:center;gap:6px;">
+            <span style="background:#FFD4D4;border-radius:6px;padding:4px;font-size:12px;">🗺️</span>
+            <span style="color:#1E2A3A;font-weight:600;">Kaart</span>
+          </div>
+          <!-- NEW: Voice assistant card -->
+          <div style="background:#fff;border:1.5px solid #A8D4F0;border-radius:8px;padding:6px 8px;display:flex;align-items:center;justify-content:space-between;">
+            <div style="display:flex;align-items:center;gap:6px;">
+              <span style="background:#E8F4FD;border-radius:6px;padding:4px;font-size:12px;">📢</span>
+              <span style="color:#1E2A3A;font-weight:600;">Spraak&shy;assistent</span>
+            </div>
+            <!-- Toggle -->
+            <div style="background:#10B981;border-radius:10px;width:28px;height:17px;position:relative;flex-shrink:0;">
+              <div style="background:#fff;border-radius:50%;width:13px;height:13px;position:absolute;top:2px;right:2px;box-shadow:0 1px 3px rgba(0,0,0,.2);"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Extra kaart in de lijst</h3>
+      <p>Spraakassistent als aparte kaart met aan/uit toggle, net als de andere opties. Makkelijk te vinden, consistent met de rest.</p>
+    </div>
+  </div>
+
+  <!-- Option B: Icon in header -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f8fafc;padding:12px;">
+      <div style="background:#fff;border-radius:12px;overflow:hidden;border:1.5px solid #e0e0e8;max-width:180px;margin:0 auto;font-size:11px;">
+        <!-- Header with speaker icon -->
+        <div style="background:linear-gradient(to bottom,#A8D4F0,#C8E4F8);padding:10px;position:relative;">
+          <div style="text-align:center;">
+            <div style="font-size:18px;">🚌</div>
+            <div style="font-weight:700;color:#1E2A3A;font-size:13px;">Lake Side Mania</div>
+          </div>
+          <!-- Speaker button top-right -->
+          <div style="position:absolute;top:8px;right:10px;background:rgba(255,255,255,0.85);border-radius:8px;padding:4px 6px;font-size:14px;display:flex;align-items:center;gap:3px;border:1px solid rgba(0,0,0,.08);">
+            🔊 <span style="font-size:9px;color:#1E2A3A;font-weight:600;">AAN</span>
+          </div>
+        </div>
+        <!-- Cards -->
+        <div style="padding:8px;display:flex;flex-direction:column;gap:5px;">
+          <div style="background:#fff;border:1px solid #e0e0e8;border-radius:8px;padding:6px 8px;display:flex;align-items:center;gap:6px;">
+            <span style="background:#D1F4E0;border-radius:6px;padding:4px;font-size:12px;">📅</span>
+            <span style="color:#1E2A3A;font-weight:600;">Start Planner</span>
+          </div>
+          <div style="background:#fff;border:1px solid #e0e0e8;border-radius:8px;padding:6px 8px;display:flex;align-items:center;gap:6px;">
+            <span style="background:#FFD4D4;border-radius:6px;padding:4px;font-size:12px;">🗺️</span>
+            <span style="color:#1E2A3A;font-weight:600;">Kaart</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Knop in de header</h3>
+      <p>Klein luidspreker-icoon rechtsboven in de blauwe header. Altijd zichtbaar, maar wel klein — minder zichtbaar voor gebruikers met beperking.</p>
+    </div>
+  </div>
+
+  <!-- Option C: Banner below header -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f8fafc;padding:12px;">
+      <div style="background:#fff;border-radius:12px;overflow:hidden;border:1.5px solid #e0e0e8;max-width:180px;margin:0 auto;font-size:11px;">
+        <!-- Header -->
+        <div style="background:linear-gradient(to bottom,#A8D4F0,#C8E4F8);padding:10px;text-align:center;">
+          <div style="font-size:18px;">🚌</div>
+          <div style="font-weight:700;color:#1E2A3A;font-size:13px;">Lake Side Mania</div>
+        </div>
+        <!-- Quick toggle banner -->
+        <div style="background:#EFF8FF;border-bottom:1px solid #BFE0F5;padding:5px 10px;display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:5px;">
+            <span style="font-size:13px;">📢</span>
+            <span style="color:#1E2A3A;font-size:10px;font-weight:600;">Spraakassistent</span>
+          </div>
+          <div style="background:#10B981;border-radius:10px;width:26px;height:15px;position:relative;">
+            <div style="background:#fff;border-radius:50%;width:11px;height:11px;position:absolute;top:2px;right:2px;box-shadow:0 1px 2px rgba(0,0,0,.2);"></div>
+          </div>
+        </div>
+        <!-- Cards -->
+        <div style="padding:8px;display:flex;flex-direction:column;gap:5px;">
+          <div style="background:#fff;border:1px solid #e0e0e8;border-radius:8px;padding:6px 8px;display:flex;align-items:center;gap:6px;">
+            <span style="background:#D1F4E0;border-radius:6px;padding:4px;font-size:12px;">📅</span>
+            <span style="color:#1E2A3A;font-weight:600;">Start Planner</span>
+          </div>
+          <div style="background:#fff;border:1px solid #e0e0e8;border-radius:8px;padding:6px 8px;display:flex;align-items:center;gap:6px;">
+            <span style="background:#FFD4D4;border-radius:6px;padding:4px;font-size:12px;">🗺️</span>
+            <span style="color:#1E2A3A;font-weight:600;">Kaart</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Banner direct onder header</h3>
+      <p>Smalle balk met toggle direct onder de blauwe header. Altijd zichtbaar en snel schakelbaar zonder door de lijst te scrollen.</p>
+    </div>
+  </div>
+
+</div>

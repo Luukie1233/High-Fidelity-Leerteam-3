@@ -85,37 +85,40 @@ export default function NieuwsDetail() {
       <div 
         className="relative px-6 py-4 flex items-center justify-between"
         style={{
-          height: '80px',
+          height: '88px',
           background: 'linear-gradient(to bottom, #A8D4F0, #C8E4F8)',
         }}
       >
         {/* Back Button */}
-        <button 
+        <button
           onClick={() => navigate('/nieuws')}
           className="p-2 -ml-2"
         >
           <ArrowLeft size={24} style={{ color: '#1E2A3A' }} />
         </button>
 
-        {/* Category Badge */}
-        <div 
-          className="px-3 py-1 rounded-full"
-          style={{
-            backgroundColor: 'rgba(255, 255, 255, 0.8)',
-            color: '#1E2A3A',
-            fontSize: '12px',
-            fontWeight: '600',
-          }}
-        >
-          {news.category}
+        {/* Category Badge + branding */}
+        <div style={{ textAlign: 'center' }}>
+          <div
+            className="px-3 py-1 rounded-full inline-block"
+            style={{
+              backgroundColor: 'rgba(255, 255, 255, 0.8)',
+              color: '#1E2A3A',
+              fontSize: '12px',
+              fontWeight: '600',
+            }}
+          >
+            {news.category}
+          </div>
+          <p style={{ color: '#6B7280', fontSize: '11px', marginTop: '2px' }}>Lake Side Mania</p>
         </div>
-        
+
         {/* Empty space for alignment */}
         <div style={{ width: '40px' }} />
       </div>
 
       {/* Content Area */}
-      <div className="flex-1 px-6 py-6 overflow-y-auto" style={{ height: 'calc(844px - 80px - 80px)' }}>
+      <div className="flex-1 px-6 py-6 overflow-y-auto" style={{ height: 'calc(844px - 88px - 80px)' }}>
         {/* Icon Header */}
         <div className="flex items-center gap-4 mb-6">
           <div 

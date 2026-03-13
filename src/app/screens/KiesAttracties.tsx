@@ -27,7 +27,7 @@ export default function KiesAttracties() {
       <div 
         className="relative px-6 py-4 flex items-center justify-between"
         style={{
-          height: '80px',
+          height: '88px',
           background: 'linear-gradient(to bottom, #A8D4F0, #C8E4F8)',
         }}
       >
@@ -40,12 +40,12 @@ export default function KiesAttracties() {
         </button>
 
         {/* Title */}
-        <h1 
-          className="text-xl font-bold"
-          style={{ color: '#1E2A3A' }}
-        >
-          {t('chooseAttractions') as string}
-        </h1>
+        <div style={{ textAlign: 'center' }}>
+          <h1 className="text-xl font-bold" style={{ color: '#1E2A3A', marginBottom: '2px' }}>
+            {t('chooseAttractions') as string}
+          </h1>
+          <p style={{ color: '#6B7280', fontSize: '11px' }}>Lake Side Mania</p>
+        </div>
         
         {/* Step Indicator */}
         <div className="flex items-center gap-1.5">
@@ -94,7 +94,7 @@ export default function KiesAttracties() {
       </div>
 
       {/* Content Area with Scrollable List */}
-      <div className="flex-1 px-6 pb-6 overflow-y-auto" style={{ height: 'calc(844px - 80px - 76px - 100px - 80px)' }}>
+      <div className="flex-1 px-6 pb-6 overflow-y-auto" style={{ height: 'calc(844px - 88px - 76px - 100px - 80px)' }}>
         <div className="space-y-3">
           {attractions.map((attraction) => (
             <AttractionCard

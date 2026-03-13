@@ -84,12 +84,12 @@ export default function AttractieDetail() {
       <div 
         className="relative px-6 py-4 flex items-center justify-between"
         style={{
-          height: '80px',
+          height: '88px',
           background: 'linear-gradient(to bottom, #A8D4F0, #C8E4F8)',
         }}
       >
         {/* Back Button */}
-        <button 
+        <button
           onClick={() => navigate('/kies-attracties')}
           className="p-2 -ml-2"
         >
@@ -97,19 +97,19 @@ export default function AttractieDetail() {
         </button>
 
         {/* Title */}
-        <h1 
-          className="text-xl font-bold"
-          style={{ color: '#1E2A3A' }}
-        >
-          {attraction.name}
-        </h1>
+        <div style={{ textAlign: 'center' }}>
+          <h1 className="text-xl font-bold" style={{ color: '#1E2A3A', marginBottom: '2px' }}>
+            {attraction.name}
+          </h1>
+          <p style={{ color: '#6B7280', fontSize: '11px' }}>Lake Side Mania</p>
+        </div>
         
         {/* Empty space for alignment */}
         <div style={{ width: '40px' }} />
       </div>
 
       {/* Content Area */}
-      <div className="flex-1 px-6 py-6 overflow-y-auto" style={{ height: 'calc(844px - 80px - 100px - 80px)' }}>
+      <div className="flex-1 px-6 py-6 overflow-y-auto" style={{ height: 'calc(844px - 88px - 100px - 80px)' }}>
         {/* Large Image Card */}
         <div 
           className="flex items-center justify-center mb-6"

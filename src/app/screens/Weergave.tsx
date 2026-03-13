@@ -2,15 +2,15 @@ import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { PhoneFrame } from '../components/PhoneFrame';
 import { TabBar } from '../components/TabBar';
-import { useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
+import { useVoiceAssistant } from '../planner/VoiceAssistantContext';
 
 export default function Weergave() {
   const navigate = useNavigate();
   const { t } = useLanguage();
   const [textSize, setTextSize] = useState(65);
   const [lineSpacing, setLineSpacing] = useState(70);
-  const [voiceAssistant, setVoiceAssistant] = useState(true);
+  const { voiceAssistant, toggleVoiceAssistant } = useVoiceAssistant();
 
   return (
     <PhoneFrame>
@@ -34,7 +34,7 @@ export default function Weergave() {
       <div 
         className="relative px-6 py-4 flex items-center justify-between"
         style={{
-          height: '80px',
+          height: '88px',
           background: 'linear-gradient(to bottom, #A8D4F0, #C8E4F8)',
         }}
       >
@@ -47,19 +47,19 @@ export default function Weergave() {
         </button>
 
         {/* Title */}
-        <h1 
-          className="text-xl font-bold"
-          style={{ color: '#1E2A3A' }}
-        >
-          {t('displayTitle') as string}
-        </h1>
+        <div style={{ textAlign: 'center' }}>
+          <h1 className="text-xl font-bold" style={{ color: '#1E2A3A', marginBottom: '2px' }}>
+            {t('displayTitle') as string}
+          </h1>
+          <p style={{ color: '#6B7280', fontSize: '11px' }}>Lake Side Mania</p>
+        </div>
         
         {/* Empty space for alignment */}
         <div style={{ width: '40px' }} />
       </div>
 
       {/* Content Area */}
-      <div className="flex-1 px-6 py-6 overflow-y-auto" style={{ height: 'calc(844px - 80px - 80px)' }}>
+      <div className="flex-1 px-6 py-6 overflow-y-auto" style={{ height: 'calc(844px - 88px - 80px)' }}>
         <div className="space-y-3">
           {/* Text Size Card */}
           <div 
@@ -170,7 +170,7 @@ export default function Weergave() {
             
             {/* Toggle Switch */}
             <button
-              onClick={() => setVoiceAssistant(!voiceAssistant)}
+              onClick={toggleVoiceAssistant}
               className="relative flex-shrink-0"
               style={{
                 width: '51px',
