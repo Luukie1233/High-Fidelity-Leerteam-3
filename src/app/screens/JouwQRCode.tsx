@@ -158,13 +158,7 @@ export default function JouwQRCode() {
             />
           </div>
 
-          {/* User Info */}
-          <h2 
-            className="font-bold mb-1"
-            style={{ color: '#1E2A3A', fontSize: '18px' }}
-          >
-            {t('familyName') as string}
-          </h2>
+          {/* Group Info */}
           <p style={{ color: '#6B7280', fontSize: '14px' }}>
             {groupSize} {t('persons') as string} · 1 QR-code
           </p>
